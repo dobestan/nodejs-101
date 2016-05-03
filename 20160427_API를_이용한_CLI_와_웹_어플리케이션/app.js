@@ -1,17 +1,11 @@
 var http = require('http');
 
+var router = require('./router');
+
 
 var app = http.createServer(function(request, response) {
-  if (request.url === "/") {
-    response.write("home");
-    response.end();
-  }
-
-  var roomId = request.url.replace("/", "");
-  if (roomId.length > 0) {
-    response.write(roomId);
-    response.end();
-  }
+  router.home(request, response);
+  router.room(request, response);
 }).listen(3000);
 
 
