@@ -4,10 +4,11 @@ var express = require("express");
 var router = express.Router();
 
 
-router.use(function requestTimeLog(request, response, next) {
-  console.log("request " + request.url + " on " + Date.now());
-  next();
-});
+// Use morgan logger instead.
+// router.use(function requestTimeLog(request, response, next) {
+//   console.log("request " + request.url + " on " + Date.now());
+//   next();
+// });
 
 
 router.get('/', function(request, response) {

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dobestan/nodecamp#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "morgan": "^1.7.0"
   }
 }
