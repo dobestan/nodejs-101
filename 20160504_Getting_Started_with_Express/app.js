@@ -1,12 +1,12 @@
 var express = require("express");
 
+var router = require('./router');
+
 
 var app = express();
 
 
-app.get('/', function(request, response) {
-  response.send("hello world");
-});
+app.use('/', router);
 
 
 app.listen(3000, function() {
