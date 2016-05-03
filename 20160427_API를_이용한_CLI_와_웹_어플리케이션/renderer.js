@@ -11,6 +11,13 @@ function render(templateName, values, response) {
   mergedContent = mergedContent.replace("{{ footer }}", footerContent);
   mergedContent = mergedContent.replace("{{ content }}", mainContent);
 
+  for (var key in values) {
+    mergedContent = mergedContent.replace(
+      "{{ " + key + " }}",
+      values[key]
+    );
+  }
+
   response.write(mergedContent);
   response.end();
 }
