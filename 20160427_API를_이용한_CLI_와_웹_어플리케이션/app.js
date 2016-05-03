@@ -2,8 +2,16 @@ var http = require('http');
 
 
 var app = http.createServer(function(request, response) {
-  response.write("hello world");
-  response.end();
+  if (request.url === "/") {
+    response.write("home");
+    response.end();
+  }
+
+  var roomId = request.url.replace("/", "");
+  if (roomId.length > 0) {
+    response.write(roomId);
+    response.end();
+  }
 }).listen(3000);
 
 
