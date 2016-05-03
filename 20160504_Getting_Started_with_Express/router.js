@@ -12,7 +12,10 @@ var router = express.Router();
 
 
 router.get('/', function(request, response) {
-  response.send("hello world");
+  response.render('home', {
+    'title': 'Home',
+    'content': 'This is home page.'
+  });
 });
 
 router.get('/:roomId', function(request, response) {

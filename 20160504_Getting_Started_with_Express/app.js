@@ -6,6 +6,8 @@ var router = require('./router');
 
 var app = express();
 
+app.set('view engine', 'pug');
+
 app.use(logger());
 app.use('/', router);
 
