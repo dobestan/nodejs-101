@@ -1,0 +1,24 @@
+{
+  "name": "nodecamp_express",
+  "version": "1.0.0",
+  "description": "Node.js 로 시작하는 웹 프로그래밍 CAMP ( 12 Sessions )",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dobestan/nodecamp.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dobestan/nodecamp/issues"
+  },
+  "homepage": "https://github.com/dobestan/nodecamp#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "pug": "^2.0.0-alpha6"
+  }
+}
