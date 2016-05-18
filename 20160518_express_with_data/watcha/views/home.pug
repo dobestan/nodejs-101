@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title watcha
+    body
+        h1 Watcha
+        p This is a mini watcha with movie news informations.
+        if search
+          p "#{search}" 에 대한 검색 결과입니다.
+        p 총 #{news.length} 개의 뉴스 정보가 표시됩니다.
+
+        ul
+          for newsItem in news
+            li
+              div
+                image(src=newsItem.image width=300 height=200)
+                h3 #{newsItem.title}
+                span #{newsItem.updated_at}
+                p #{newsItem.content}
