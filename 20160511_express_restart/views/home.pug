@@ -1,0 +1,13 @@
+extends base
+
+
+block title
+    title hello
+
+
+block content
+    section#content
+        h1 This is Content
+        - animals = ["dog", "cat", "bird"]
+        each animal in animals
+            li #{animal}
