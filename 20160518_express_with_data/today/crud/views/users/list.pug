@@ -1,0 +1,9 @@
+h1 유저 리스트
+p db.csv 에서 읽은 유저 리스트입니다.
+p #{users.length} 명의 유저 입니다.
+
+ul
+    for user in users
+        h3 #{user.userId} #{user.name}
+        p #{user.email}
+        a(href="/users/" + user.userId) 상세페이지 바로가기
