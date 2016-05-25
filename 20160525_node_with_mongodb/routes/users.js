@@ -4,7 +4,10 @@ var router = express.Router();
 
 
 router.get('/', function(request, response) {
-  response.send("users list");
+  request.db.get("users").find({}, function(error, document) {
+    if (error) console.log(error);
+    response.send(document);
+  });
 });
 
 
