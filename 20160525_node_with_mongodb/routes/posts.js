@@ -16,7 +16,7 @@ router.post("/", function(request, response) {
   var title = request.body.title;
   var content = request.body.content;
 
-  request.db.get("posts").insert({title: title, content: content}, function(error, document) {
+  request.db.get("posts").insert({title: title, content: content, comments: []}, function(error, document) {
     if (error) console.log(error);
     return response.redirect("/posts/");
   });
@@ -35,6 +35,21 @@ router.get("/:title", function(request, response) {
 
   request.db.get("posts").find({title: title}, function(error, document) {
     return response.render("posts/detail", {post: document[0]});
+  });
+});
+
+
+router.post("/:title/comments", function(request, response) {
+  var title = request.params.title;
+  var comment = request.body.content;
+
+  request.db.get("posts").find({title: title}, function(error, document) {
+    var post = document[0];
+    post.comments.push(comment);
+
+    request.db.get("posts").update({title: title}, {title: post.title, content: post.content, comments: post.comments}, function(error, document) {
+      return response.redirect("/posts/" + post.title);
+    });
   });
 });
 
