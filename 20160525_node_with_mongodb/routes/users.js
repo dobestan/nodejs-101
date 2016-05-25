@@ -49,4 +49,17 @@ router.delete("/:username", function(request, response) {
 });
 
 
+router.patch("/:username", function(request, response) {
+  var username = request.params.username;
+  var age = Number(request.body.age);
+  var address = request.body.address;
+
+  request.db.get("users").update({'username': username}, {'username': username, 'age': age, 'address': address}, function(error, document) {
+    if (error) console.log(error);
+    response.send('Updated');
+  });
+});
+
+
+
 module.exports = router;
