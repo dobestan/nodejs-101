@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 router.get("/", function(request, response) {
-  response.send("<h1>Users List</h1>");
+  response.render("users/list");
 });
 
 

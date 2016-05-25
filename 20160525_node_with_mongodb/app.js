@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require('path');
 
 var httpRouter = require('./routes/http');
 var usersRouter = require('./routes/users');
@@ -10,6 +11,9 @@ var db = monk('mongodb://localhost:27017/nodecamp');
 
 var app = express();
 
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
