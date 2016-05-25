@@ -39,4 +39,14 @@ router.get('/:username', function(request, response) {
 });
 
 
+router.delete("/:username", function(request, response) {
+  var username = request.params.username;
+
+  request.db.get("users").remove({'username': username}, function(error, document) {
+    if (error) console.log(error);
+    response.send('Deleted');
+  });
+});
+
+
 module.exports = router;
