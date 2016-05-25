@@ -1,2 +1,8 @@
 h1 Users List
 p This is users list.
+
+
+for user in users
+    a(href="/users/" + user.username)
+        h2 #{user.username}
+    p #{user.address}
