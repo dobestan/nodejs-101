@@ -5,6 +5,7 @@ var path = require('path');
 var httpRouter = require('./routes/http');
 var usersRouter = require('./routes/users');
 var usersApiRouter = require('./routes/api/users.js');
+var postsRouter = require('./routes/posts');
 
 var monk = require('monk');
 var db = monk('mongodb://localhost:27017/nodecamp');
@@ -28,6 +29,7 @@ app.use(function(request, response, next) {
 app.use('/http', httpRouter);
 app.use('/users', usersRouter);
 app.use('/api/users', usersApiRouter);
+app.use('/posts', postsRouter);
 
 
 app.listen(3000, function() {
