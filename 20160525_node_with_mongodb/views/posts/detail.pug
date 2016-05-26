@@ -1,0 +1,17 @@
+h1 #{post.title}
+p #{post.content}
+
+
+h2 Comments ( #{post.comments.length} )
+
+ul
+for comment in post.comments
+    li
+        p #{comment}
+
+
+h2 New Comment
+
+form(method="POST" action="/posts/" + post.title + "/comments/")
+    input(type="text" name="content")
+    input(type="submit" value="댓글 달기")

@@ -1,0 +1,10 @@
+h1 Blog
+p This is blog page with posts list.
+
+a(href="/posts/new/") 포스트 작성
+
+ul
+    for post in posts
+        li 
+            a(href="/posts/" + post.title)
+                h2 #{post.title}
