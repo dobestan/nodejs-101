@@ -1,0 +1,17 @@
+h1 #{post.title}
+p #{post.content}
+
+
+h2 Comments ( #{post.comments.length} )
+
+ul
+for comment in post.comments
+    li
+        span #{comment.username}
+        p #{comment.content}
+
+
+form(method="POST", action="/posts/" + post.title + "/comments/")
+    input(type="text" name="username" placeholder="작성자")
+    input(type="text" name="content" placeholder="댓글 본문")
+    input(type="submit" value="Comment")

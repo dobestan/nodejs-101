@@ -1,0 +1,12 @@
+h1 Posts List
+p This is posts list page.
+a(href="/posts/new/") 새 글 쓰기
+
+p 총 #{posts.length} 개의 글이 있습니다.
+
+ul
+for post in posts
+    li
+        h3 #{post.title}
+        p #{post.content}
+        a(href="/posts/" + post.title) 상세페이지 바로가기
