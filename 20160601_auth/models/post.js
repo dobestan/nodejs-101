@@ -8,7 +8,20 @@ mongooseAutoIncrement.initialize(mongoose.connection);
 
 var postSchema = new Schema({
   title: {type: String, unique: true},
-  content: {type: String}
+  content: {type: String},
+
+  createdAt: Date,
+  updatedAt: Date
+});
+
+
+postSchema.pre("save", function(next) {
+  var currentDate = new Date();
+
+  if (!this.createdAt) this.createdAt = currentDate;
+  this.updatedAt = currentDate;
+
+  next();
 });
 
 

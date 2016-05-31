@@ -2,6 +2,10 @@ h1 #{post.title}
 p #{post.content}
 
 ul
+    li Created on #{post.createdAt}
+    li Updated on #{post.updatedAt}
+
+ul
     li
         a(href="/posts/" + post._id + "/edit/") 수정
     li
