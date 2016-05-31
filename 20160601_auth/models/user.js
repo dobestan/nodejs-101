@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var passportLocalMongoose = require("passport-local-mongoose");
 
 mongoose.connect("mongodb://localhost/nodecamp");
 
@@ -10,6 +11,9 @@ var userSchema = new Schema({
 });
 
 var User = mongoose.model("User", userSchema);
+
+
+userSchema.plugin(passportLocalMongoose);
 
 
 module.exports = User;

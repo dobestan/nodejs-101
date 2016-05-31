@@ -1,0 +1,9 @@
+h1 Posts List
+p #{posts.length} posts
+
+ul
+    for post in posts
+        li
+            a(href="/posts/" + post._id)
+                h2 #{post.title}
+            p #{post.content}
