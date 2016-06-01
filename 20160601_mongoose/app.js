@@ -13,6 +13,11 @@ var postsRouter = require("./routes/posts");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
+
+// Serving Static Files
+app.use('/static', express.static(__dirname + '/public'));
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
