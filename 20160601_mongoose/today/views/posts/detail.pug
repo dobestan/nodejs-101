@@ -1,0 +1,27 @@
+extends ../base
+
+
+block content
+    h1 #{post.title}
+    p #{post.content}
+
+    ul
+        li created at #{post.createdAt}
+        li updated at #{post.updatedAt}
+
+    ul
+        li
+            a(href="/posts/" + post._id + "/edit/") Edit
+        li
+            a(href="/posts/" + post._id + "/delete/") Delete
+
+
+    h2 Comments ( #{post.comments.length} )
+    ul
+        for comment in post.comments
+            li
+                p #{comment.content} - on #{comment.createdAt}
+                a(href="/posts/" + post._id + "/comments/" + comment._id + "/delete/") Delete
+    form(action="/posts/" + post._id + "/comments/" method="POST")
+        input(type="text" name="content" placeholder="댓글")
+        input(type="submit" value="댓글 달기")

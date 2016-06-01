@@ -1,0 +1,11 @@
+extends ../base
+
+
+block content
+    h1 Posts List
+    p #{posts.length} 개의 포스트가 있습니다.
+
+    for post in posts
+        li
+            span #{post.title}
+            a(href="/posts/" + post._id) 더 읽어보기
