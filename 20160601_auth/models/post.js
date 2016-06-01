@@ -6,12 +6,26 @@ var Schema = mongoose.Schema;
 mongooseAutoIncrement.initialize(mongoose.connection);
 
 
+var commentSchema = new Schema({
+  content: String,
+  createdAt: Date
+});
+
+
 var postSchema = new Schema({
   title: {type: String, unique: true},
   content: {type: String},
+  comments: [commentSchema],
 
   createdAt: Date,
   updatedAt: Date
+});
+
+
+commentSchema.pre("save", function(next) {
+  var currentDate = new Date();
+  if (!this.createdAt) this.createdAt = currentDate;
+  next();
 });
 
 

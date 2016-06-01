@@ -101,4 +101,36 @@ router.get("/:postId/delete", function(request, response) {
 });
 
 
+router.post("/:postId/comments", function(request, response) {
+  var postId = request.params.postId;
+  var commentContent = request.body.content;
+
+  Post.findById(postId, function(error, post) {
+    if (error) response.send(error);
+
+    var comment = {content: commentContent};
+    post.comments.push(comment);
+    post.save(function(error) {
+      if (error) response.send(error);
+      return response.redirect("/posts/" + post._id);
+    });
+  });
+});
+
+
+router.get("/:postId/comments/:commentId/delete", function(request, response) {
+  var postId = request.params.postId;
+  var commentId = request.params.commentId;
+
+  Post.findById(postId, function(error, post) {
+    if (error) response.send(error);
+    post.comments.id(commentId).remove();
+    post.save(function(error) {
+      if(error) response.send(error);
+      return response.redirect("/posts/" + post._id);
+    });
+  });
+});
+
+
 module.exports = router;
