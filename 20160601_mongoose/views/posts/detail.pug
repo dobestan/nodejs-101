@@ -1,0 +1,22 @@
+h1 #{post.title}
+p #{post.content}
+
+ul
+    li Created on #{post.createdAt}
+    li Updated on #{post.updatedAt}
+
+ul
+    li
+        a(href="/posts/" + post._id + "/edit/") 수정
+    li
+        a(href="/posts/" + post._id + "/delete/") 삭제
+
+
+h2 Comments ( #{post.comments.length} )
+for comment in post.comments
+    li #{comment.content} on #{comment.createdAt}
+        a(href="/posts/" + post._id + "/comments/" + comment._id + "/delete/") 삭제
+
+form(action="/posts/" + post._id + "/comments/" method="POST")
+    input(type="text" name="content" placeholder="댓글")
+    input(type="submit" value="댓글 달기")

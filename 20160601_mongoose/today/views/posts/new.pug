@@ -1,0 +1,10 @@
+extends ../base
+
+
+block content
+    h1 New Post
+
+    form(action="/posts/" method="POST")
+        input(type="text" name="title" placeholder="제목")
+        input(type="text" name="content" placeholder="본문")
+        input(type="submit" value="글 작성하기")

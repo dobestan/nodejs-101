@@ -1,0 +1,8 @@
+h1 Edit Post
+p Edit a existing post.
+
+
+form(method="POST")
+    input(type="text" name="title" placeholder="제목" value=post.title)
+    textarea(type="text" name="content" placeholder="본문") #{post.content}
+    input(type="submit" value="글 작성하기")
