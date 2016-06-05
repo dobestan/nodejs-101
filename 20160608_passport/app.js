@@ -5,6 +5,7 @@ var path = require('path');
 var passport = require('passport');
 
 var homeRouter = require("./routes/home");
+var authRouter = require("./routes/auth");
 
 
 var app = express();
@@ -35,6 +36,7 @@ passport.deserializeUser(function(id, done) {
 
 
 app.use("/", homeRouter);
+app.use("/", authRouter); 
 
 
 mongoose.connect("mongodb://localhost/passport");

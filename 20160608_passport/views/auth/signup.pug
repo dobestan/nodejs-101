@@ -1,0 +1,13 @@
+extends ../base
+
+
+block content
+    h1 Signup
+    p Create a user account.
+
+
+    form(action="/signup/" method="POST")
+        input(type="text" name="username" placeholder="username" required)
+        input(type="password" name="password" placeholder="password" required)
+        input(type="email" name="email" placeholder="username@email.com" required)
+        input(type="submit" value="signup")
