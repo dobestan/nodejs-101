@@ -1,12 +1,20 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var expressSession = require('express-session');
+var path = require('path');
+var passport = require('passport');
+
+var homeRouter = require("./routes/home");
 
 
 var app = express();
 
 
 var User = require("./models/user");
+
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "pug");
 
 
 app.use(expressSession({secret: "Nodecamp is Awesome"}));
@@ -24,6 +32,9 @@ passport.deserializeUser(function(id, done) {
     done(error, user);
   });
 });
+
+
+app.use("/", homeRouter);
 
 
 mongoose.connect("mongodb://localhost/passport");
