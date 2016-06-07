@@ -6,6 +6,8 @@ var path = require('path');
 var passport = require('passport');
 var passportLocal = require('passport-local');
 var passportLocalStrategy = passportLocal.Strategy;
+var passportFacebook = require('passport-facebook');
+var passportFacebookStrategy = passportFacebook.Strategy;
 var bodyParser = require("body-parser");
 
 var flash = require('connect-flash');
@@ -45,10 +47,36 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+passport.use(new passportFacebookStrategy({
+    clientID: "1139858509419307",
+    clientSecret: "1dcaab1854d47b009912b1c43288f62d",
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOne({facebookId: profile.id}, function(error, user) {
+      if (error) return done(error);
+      if (!user) {
+        user = new User({
+          username: profile.displayName,
+          facebookId: profile.id
+        });
+
+        user.save(function(error) {
+          if (error) return done(error);
+        });
+      }
+
+      return done(error, user);
+    });
+  }
+));
+
+
 app.use(function(request, response, next) {
   response.locals.messages = expressMessages(request, response);
   next();
 });
+
 
 app.use(function(request, response, next) {
   response.locals.user = request.user;
