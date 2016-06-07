@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 var passport = require('passport');
 var flash = require('connect-flash');
+var expressMessages = require('express-messages');
 
 var homeRouter = require("./routes/home");
 var authRouter = require("./routes/auth");
@@ -24,6 +25,12 @@ app.set("view engine", "pug");
 app.use(cookieParser("Awesome Nodecamp"));
 app.use(expressSession({secret: "Nodecamp is Awesome", resave: true, saveUninitialized: true}));
 app.use(flash());
+
+app.use(function(request, response, next) {
+  response.locals.messages = expressMessages(request, response);
+  next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
