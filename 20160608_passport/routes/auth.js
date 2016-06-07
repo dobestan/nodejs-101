@@ -57,4 +57,12 @@ router.get('/auth/facebook/callback', passport.authenticate('facebook', { failur
 });
 
 
+router.get("/auth/kakao", passport.authenticate("kakao"));
+
+
+router.get('/auth/kakao/callback', passport.authenticate('kakao', { failureRedirect: '/login' }), function(request, response) {
+  return response.redirect('/');
+});
+
+
 module.exports = router;

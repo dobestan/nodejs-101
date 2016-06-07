@@ -8,6 +8,8 @@ var passportLocal = require('passport-local');
 var passportLocalStrategy = passportLocal.Strategy;
 var passportFacebook = require('passport-facebook');
 var passportFacebookStrategy = passportFacebook.Strategy;
+var passportKakao = require('passport-kakao');
+var passportKakaoStrategy = passportKakao.Strategy;
 var bodyParser = require("body-parser");
 
 var flash = require('connect-flash');
@@ -59,6 +61,30 @@ passport.use(new passportFacebookStrategy({
         user = new User({
           username: profile.displayName,
           facebookId: profile.id
+        });
+
+        user.save(function(error) {
+          if (error) return done(error);
+        });
+      }
+
+      return done(error, user);
+    });
+  }
+));
+
+
+passport.use(new passportKakaoStrategy({
+    clientID: "cbc43032a00e28820d7e4e5bda3b7f13",
+    callbackURL: "http://localhost:3000/auth/kakao/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOne({kakaoId: profile.id}, function(error, user) {
+      if (error) return done(error);
+      if (!user) {
+        user = new User({
+          username: profile.id,
+          kakaoId: profile.id
         });
 
         user.save(function(error) {
