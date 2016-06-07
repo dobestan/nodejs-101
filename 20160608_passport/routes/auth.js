@@ -53,6 +53,7 @@ router.get("/auth/facebook", passport.authenticate("facebook"));
 
 
 router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(request, response) {
+  request.flash("success", "성공적으로 페이스북 로그인 되었습니다.");
   return response.redirect('/');
 });
 
@@ -61,6 +62,7 @@ router.get("/auth/kakao", passport.authenticate("kakao"));
 
 
 router.get('/auth/kakao/callback', passport.authenticate('kakao', { failureRedirect: '/login' }), function(request, response) {
+  request.flash("success", "성공적으로 카카오톡 로그인 되었습니다.");
   return response.redirect('/');
 });
 
