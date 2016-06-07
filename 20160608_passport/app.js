@@ -1,11 +1,14 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var expressSession = require('express-session');
+var cookieParser = require('cookie-parser');
 var path = require('path');
 var passport = require('passport');
+var flash = require('connect-flash');
 
 var homeRouter = require("./routes/home");
 var authRouter = require("./routes/auth");
+var flashRouter = require("./routes/flash");
 
 
 var app = express();
@@ -18,7 +21,9 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 
-app.use(expressSession({secret: "Nodecamp is Awesome"}));
+app.use(cookieParser("Awesome Nodecamp"));
+app.use(expressSession({secret: "Nodecamp is Awesome", resave: true, saveUninitialized: true}));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -36,7 +41,8 @@ passport.deserializeUser(function(id, done) {
 
 
 app.use("/", homeRouter);
-app.use("/", authRouter); 
+app.use("/", authRouter);
+app.use("/flash", flashRouter);
 
 
 mongoose.connect("mongodb://localhost/passport");
