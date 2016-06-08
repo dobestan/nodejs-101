@@ -1,0 +1,15 @@
+header
+    h1 Header
+
+    ul
+        if (!user)
+            li
+                a(href="/login/") Login
+            li
+                a(href="/signup/") Signup
+        if (user)
+            p 현재 #{user.username} 으로 로그인된 상태입니다.
+            li
+                a(href="/logout/") Logout
+        li
+            a(href="/flash/") test flash message

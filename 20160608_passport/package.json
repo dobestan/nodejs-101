@@ -1,0 +1,26 @@
+{
+  "name": "20160608_passport",
+  "version": "1.0.0",
+  "description": "> Goal: `passport` 를 이용한 로그인/회원가입 및 소셜 로그인 ( 페이스북, 카카오 ) 구현하기",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.13.4",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.19",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-kakao": "0.0.3",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "pug": "^2.0.0-beta2"
+  }
+}
