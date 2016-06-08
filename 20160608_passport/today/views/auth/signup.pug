@@ -1,0 +1,15 @@
+extends ../base
+
+
+block content
+    h1 회원가입
+
+    form(action="/signup/" method="POST")
+        input(type="text" name="username" placeholder="username")
+        input(type="password" name="password" placeholder="password")
+        input(type="email" name="email" placeholder="username@email.com")
+        input(type="submit" value="회원가입")
+
+    ul
+        li
+            a(href="/auth/kakao/") 카카오톡으로 회원가입하기

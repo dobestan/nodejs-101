@@ -1,0 +1,25 @@
+{
+  "name": "today",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.13.4",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.20",
+    "passport": "^0.3.2",
+    "passport-kakao": "0.0.3",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.0.0",
+    "pug": "^2.0.0-beta2"
+  }
+}

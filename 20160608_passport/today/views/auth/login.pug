@@ -1,0 +1,14 @@
+extends ../base
+
+
+block content
+    h1 로그인
+
+    form(action="/login/" method="POST")
+        input(type="text" name="username" placeholder="username")
+        input(type="password" name="password" placeholder="password")
+        input(type="submit" value="로그인")
+
+    ul
+        li
+            a(href="/auth/kakao/") 카카오톡으로 로그인하기
