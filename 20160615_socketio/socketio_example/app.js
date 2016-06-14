@@ -3,9 +3,13 @@ var express = require("express");
 var http = require("http");
 var socketio = require("socket.io");
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 
 
 var app = express();
+
+
+mongoose.connect("mongodb://localhost/nodecamp");
 
 
 var homeRouter = require("./routes/home");
