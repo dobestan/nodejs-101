@@ -2,9 +2,14 @@ var path = require("path");
 var express = require("express");
 var http = require("http");
 var socketio = require("socket.io");
+var bodyParser = require("body-parser");
 
 
 var app = express();
+
+
+var homeRouter = require("./routes/home");
+var postsRouter = require("./routes/posts");
 
 
 app.set("views", path.join(__dirname, "views"));
@@ -13,10 +18,11 @@ app.set("view engine", "pug");
 
 app.use("/static", express.static(path.join(__dirname, "public")));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("/", function(request, response) {
-  return response.render("home");
-});
+app.use("/", homeRouter);
+app.use("/posts", postsRouter);
 
 
 var httpServer = http.Server(app);
