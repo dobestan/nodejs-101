@@ -11,6 +11,13 @@ block content
         li created at #{post.createdAt}
         li updated at #{post.updatedAt}
 
+    h2 API List
+    ul
+        li
+            a(href="/api/posts/" + post._id + "/comments/") GET api:posts:detail:comments:list
+        li
+            a(href="/api/posts/" + post._id + "/comments/") POST api:posts:detail:comments:create
+
     section#comments-section
         section#comments-list-section
             h2 posts:detail:comments:list

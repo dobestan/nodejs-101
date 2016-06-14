@@ -14,6 +14,7 @@ mongoose.connect("mongodb://localhost/nodecamp");
 
 var homeRouter = require("./routes/home");
 var postsRouter = require("./routes/posts");
+var ApiRouter = require("./routes/api");
 
 
 app.set("views", path.join(__dirname, "views"));
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use("/", homeRouter);
 app.use("/posts", postsRouter);
+app.use("/api", ApiRouter);
 
 
 var httpServer = http.Server(app);
