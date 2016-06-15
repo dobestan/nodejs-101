@@ -1,0 +1,10 @@
+extends ../base
+
+
+block content
+    h1 posts:list
+
+    ul
+        for post in posts
+            li
+                a(href="/posts/" + post._id + "/") #{post.title}

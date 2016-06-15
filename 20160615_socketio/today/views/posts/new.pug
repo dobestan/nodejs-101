@@ -1,0 +1,10 @@
+extends ../base
+
+
+block content
+    h1 posts:new
+
+    form(action="/posts/" method="POST")
+        input(type="text" name="title" placeholder="title" required)
+        textarea(name="content" placeholder="content" required)
+        input(type="submit" value="publish")

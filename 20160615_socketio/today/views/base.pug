@@ -1,0 +1,13 @@
+doctype html
+html
+    head
+        title Socket.io
+        link(rel="stylesheet" href="/static/css/application.css")
+    body
+        include ./partials/header
+        block content
+        include ./partials/footer
+        script(src="http://code.jquery.com/jquery-1.11.1.js")
+        script(src="https://cdn.socket.io/socket.io-1.4.5.js")
+        script(src="/static/js/application.js")
+        block javascript

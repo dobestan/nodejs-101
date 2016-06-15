@@ -1,0 +1,41 @@
+extends ../base
+
+
+block content
+    h1 posts:detail
+
+    h1 #{post.title}
+    p #{post.content}
+
+    ul
+        li created at #{post.createdAt}
+        li updated at #{post.updatedAt}
+
+    h2 API List
+    ul
+        li
+            a(href="/api/posts/" + post._id + "/comments/") GET api:posts:detail:comments:list
+        li
+            a(href="/api/posts/" + post._id + "/comments/") POST api:posts:detail:comments:create
+
+    section#comments-section(data-post-id=post._id)
+        section#comments-list-section
+            h2 posts:detail:comments:list
+            <h2>comments ( <span id="comments-count">#{post.comments.length}</span> )</h2>
+            ul
+                for comment in post.comments
+                    li #{comment.content}
+
+        section#comments-create-section
+            section#comments-form-create-section
+                h2 posts:detail:comments:create ( form )
+                p form 을 통해서 HTTP Request 를 전달하고, Comment 를 생성한 후 다시 posts:detail 페이지 전체를 렌더링
+                form(action="/posts/" + post._id + "/comments/" method="POST")
+                    input(type="text" name="content" placeholder="content" required)
+                    input(type="submit" value="form comment")
+
+    a(href="/posts/") ↩ posts:list 로 돌아가기
+
+
+block javascript
+    script(src="/static/js/comments.js")
