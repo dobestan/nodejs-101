@@ -1,11 +1,21 @@
 $(document).ready(function() {
   var postId = $("section#comments-section").data("post-id");
+  var commentsListSection = $("section#comments-list-section");
+  var url = "/api/posts/" + postId + "/comments/";
 
   // comments:list
+  $.ajax({
+    url: url,
+    type: "GET",
+    success: function(result) {
+      result.forEach(function(comment) {
+        $(commentsListSection).find("ul").append($("<li>").text(comment.content));
+      });
+    }
+  });
 
   // comments:create
   var form = $("section#comments-ajax-create-section form");
-  var commentsListSection = $("section#comments-list-section");
 
   form.submit(function() {
     var input = $(form).find("input[name='content']");
@@ -14,7 +24,6 @@ $(document).ready(function() {
     var data = {
       content: content
     };
-    var url = "/api/posts/" + postId + "/comments/";
 
     $.ajax({
       url: url,
