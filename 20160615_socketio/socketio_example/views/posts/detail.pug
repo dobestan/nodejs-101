@@ -18,13 +18,13 @@ block content
         li
             a(href="/api/posts/" + post._id + "/comments/") POST api:posts:detail:comments:create
 
-    section#comments-section
+    section#comments-section(data-post-id=post._id)
         section#comments-list-section
             h2 posts:detail:comments:list
-            h2 comments ( #{post.comments.length} )
+            <h2>comments ( <span id="comments-count">#{post.comments.length}</span> )</h2>
             ul
                 for comment in post.comments
-                    li #{comment.content} ( #{comment.createdAt} )
+                    li #{comment.content}
 
         section#comments-create-section
             section#comments-form-create-section
@@ -38,7 +38,11 @@ block content
                 h2 posts:detail:comments:create ( ajax )
                 p ajax, 즉 javascript 를 통해서 HTTP Request 를 전달하고, Comment 를 생성한다. 생성되면, 페이지의 일부분만을 렌더링
                 form()
-                    input(type="text" placeholder="content" required)
+                    input(type="text" name="content" placeholder="content" required)
                     input(type="submit" value="ajax comment")
 
     a(href="/posts/") ↩ posts:list 로 돌아가기
+
+
+block javascript
+    script(src="/static/js/comments.js")
