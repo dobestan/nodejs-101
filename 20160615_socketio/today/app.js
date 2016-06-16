@@ -37,6 +37,24 @@ var httpServer = http.Server(app);
 var io = socketio(httpServer);
 
 
+io.on("connection", function(socket) {
+  console.log("Socket Connected");
+
+  socket.on("chat", function(data) {
+    io.emit("chat", data);
+  });
+
+  socket.on("joined", function(username) {
+    // io.emit("joined", username);
+    socket.broadcast.emit("joined", username);
+  });
+
+  socket.on("disconnect", function() {
+    console.log("Socket Disconnected");
+  });
+});
+
+
 httpServer.listen(3000, function() {
   console.log("Server is listening on localhost:3000");
 });

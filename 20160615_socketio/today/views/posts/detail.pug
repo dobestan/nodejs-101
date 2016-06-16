@@ -21,16 +21,23 @@ block content
     section#comments-section(data-post-id=post._id)
         section#comments-list-section
             h2 posts:detail:comments:list
-            <h2>comments ( <span id="comments-count">#{post.comments.length}</span> )</h2>
+            <h2>comments ( <span id="comments-count"></span> )</h2>
             ul
-                for comment in post.comments
-                    li #{comment.content}
+                // for comment in post.comments
+                //     li #{comment.content}
 
         section#comments-create-section
             section#comments-form-create-section
                 h2 posts:detail:comments:create ( form )
                 p form 을 통해서 HTTP Request 를 전달하고, Comment 를 생성한 후 다시 posts:detail 페이지 전체를 렌더링
                 form(action="/posts/" + post._id + "/comments/" method="POST")
+                    input(type="text" name="content" placeholder="content" required)
+                    input(type="submit" value="form comment")
+
+            section#comments-ajax-create-section
+                h2 posts:detail:comments:create ( ajax )
+                p ajax 를 통해서 Comment 를 생성
+                form(data-post-id=post._id)
                     input(type="text" name="content" placeholder="content" required)
                     input(type="submit" value="form comment")
 

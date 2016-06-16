@@ -4,6 +4,13 @@ extends base
 block content
     h1 Chat
 
+    form()
+        input(type="text" name="content" placeholder="chat message" required)
+        input(type="submit" value="send")
+
+    ul#chat-list
+        li ===== Start of chat =====
+
 
 block javascript
     script(src="/static/js/chat.js")
