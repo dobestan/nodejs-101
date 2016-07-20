@@ -23,16 +23,24 @@ function roomRouter(request, response) {
 
       apiResponse.on("end", function() {
         var zigbangData = JSON.parse(data);
-        var zigbangItem = zigbangData["items"][0]["item"];
 
-        var context = {
-          deposit: zigbangItem["deposit"],
-          rent: zigbangItem["rent"],
-          address: zigbangItem["agent_address1"],
-          imageUrl: zigbangItem["profile_url"]
-        };
+        try {
+          var zigbangItem = zigbangData["items"][0]["item"];
 
-        render("room", context, response);
+          var context = {
+            deposit: zigbangItem["deposit"],
+            rent: zigbangItem["rent"],
+            address: zigbangItem["agent_address1"],
+            imageUrl: zigbangItem["profile_url"]
+          };
+
+          render("room", context, response);
+        } catch (error) {
+          var context = {
+            error: error
+          };
+          render("error", context, response);
+        }
       });
     });
   }
