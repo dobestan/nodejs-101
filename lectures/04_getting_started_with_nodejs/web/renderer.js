@@ -8,6 +8,11 @@ function render(templateName, values, response) {
     {encoding: "utf8"}
   );
 
+  for (key in values) {
+    var value = values[key];
+    mainContent = mainContent.replace("{{ " + key + " }}", value);
+  }
+
   response.write(mainContent);
   response.end();
 }

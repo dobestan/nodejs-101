@@ -22,8 +22,17 @@ function roomRouter(request, response) {
       });
 
       apiResponse.on("end", function() {
-        response.write(data);
-        response.end();
+        var zigbangData = JSON.parse(data);
+        var zigbangItem = zigbangData["items"][0]["item"];
+
+        var context = {
+          deposit: zigbangItem["deposit"],
+          rent: zigbangItem["rent"],
+          address: zigbangItem["agent_address1"],
+          imageUrl: zigbangItem["profile_url"]
+        };
+
+        render("room", context, response);
       });
     });
   }
