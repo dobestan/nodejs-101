@@ -3,17 +3,34 @@ var path = require("path");
 
 
 function render(templateName, values, response) {
+  var baseContent = fs.readFileSync(
+    path.join(__dirname, "templates", "base.html"),
+    {encoding: "utf8"}
+  );
+  var headerContent = fs.readFileSync(
+    path.join(__dirname, "templates", "partials", "header.html"),
+    {encoding: "utf8"}
+  );
+  var footerContent = fs.readFileSync(
+    path.join(__dirname, "templates", "partials", "footer.html"),
+    {encoding: "utf8"}
+  );
   var mainContent = fs.readFileSync(
     path.join(__dirname, "templates", templateName + ".html"),
     {encoding: "utf8"}
   );
 
+  var content = baseContent
+    .replace("{{ header }}", headerContent)
+    .replace("{{ footer }}", footerContent)
+    .replace("{{ content }}", mainContent);
+
   for (key in values) {
     var value = values[key];
-    mainContent = mainContent.replace("{{ " + key + " }}", value);
+    content = content.replace("{{ " + key + " }}", value);
   }
 
-  response.write(mainContent);
+  response.write(content);
   response.end();
 }
 
