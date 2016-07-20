@@ -1,4 +1,4 @@
-var sendSms = require("./sms");
+var sendSms = require("./send_sms");
 
 
 var sender = process.argv[2];
