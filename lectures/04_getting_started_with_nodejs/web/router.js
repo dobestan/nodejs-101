@@ -1,10 +1,11 @@
 var http = require("http");
 
+var render = require("./renderer");
+
 
 function homeRouter(request, response) {
   if (request.url === "/") {
-    response.write("<h1>Home</h1>");
-    response.end();
+    render("home", {}, response);
   }
 }
 
