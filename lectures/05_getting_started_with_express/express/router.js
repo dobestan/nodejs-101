@@ -1,7 +1,11 @@
+var path = require("path");
+
 var httpRequest = require("request");
 var express = require("express");
 
 var router = express.Router();
+
+var csv = require("./csv");
 
 
 router.get("/", function(request, response) {
@@ -42,6 +46,15 @@ router.get("/zigbang/:roomId/", function(request, response) {
       });
     }
   );
+});
+
+
+router.get("/csv/:filename/", function(request, response) {
+  var filename = request.params.filename;
+  var filePath = path.join(__dirname, "csv", filename);
+
+  var data = csv(filePath);
+  return response.json(data);
 });
 
 
