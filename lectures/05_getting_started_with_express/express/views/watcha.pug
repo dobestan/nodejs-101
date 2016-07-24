@@ -1,0 +1,13 @@
+extends ./base
+
+
+block content
+    h1 Watcha News
+    p #{news.length} 개의 뉴스가 있습니다.
+
+    ul
+        each new_item in news
+            li
+                img(src=new_item.image alt=new_item.title)
+                h1= new_item.title
+                p= new_item.content
