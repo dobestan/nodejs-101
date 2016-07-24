@@ -1,0 +1,12 @@
+extends ./base
+
+
+block content
+    h1 Zigbang Detail
+
+    img(src=zigbang.profile_url width="100%")
+
+    ul
+        li address: #{zigbang.agent_address1}
+        li deposit: #{zigbang.deposit}
+        li rent: #{zigbang.rent}

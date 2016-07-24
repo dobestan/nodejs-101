@@ -28,4 +28,21 @@ router.get("/watcha/", function(request, response) {
 });
 
 
+router.get("/zigbang/:roomId/", function(request, response) {
+  var roomId = request.params.roomId;
+  var zigbangApiUrl = "https://api.zigbang.com/v1/items?detail=true&item_ids=" + roomId;
+
+  httpRequest.get(
+    zigbangApiUrl,
+    function(error, httpResponse, body) {
+      var data = JSON.parse(body);
+
+      return response.render("zigbang", {
+        zigbang: data["items"][0]["item"]
+      });
+    }
+  );
+});
+
+
 module.exports = router;
