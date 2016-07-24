@@ -49,9 +49,9 @@ router.get("/zigbang/:roomId/", function(request, response) {
 });
 
 
-router.get("/csv/:filename/", function(request, response) {
+router.get("/api/:filename/", function(request, response) {
   var filename = request.params.filename;
-  var filePath = path.join(__dirname, "csv", filename);
+  var filePath = path.join(__dirname, "csv", filename + ".csv");
 
   var data = csv(filePath);
   return response.json(data);
