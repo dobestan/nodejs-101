@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 
 var homeRouter = require("./routes/home");
 var httpRouter = require("./routes/http");
+var watchaRouter = require("./routes/watcha");
 var usersRouter = require("./routes/users");
 
 
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Middleware - Router
 app.use("/", homeRouter);
 app.use("/http/", httpRouter);
+app.use("/watcha/", watchaRouter);
 app.use("/users/", usersRouter);
 
 
