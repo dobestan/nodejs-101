@@ -1,5 +1,6 @@
-var express = require("express");
+var path = require("path");
 
+var express = require("express");
 var bodyParser = require("body-parser");
 
 
@@ -9,6 +10,11 @@ var usersRouter = require("./routes/users");
 
 
 var app = express();
+
+
+// Application Settings
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
 
 // Middleware - body-parser
