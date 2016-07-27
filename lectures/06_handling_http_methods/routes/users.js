@@ -31,6 +31,19 @@ router.get("/", function(request, response) {
 
 // users:create
 router.post("/", function(request, response) {
+  var name = request.body.name;
+  var email = request.body.email;
+  var phonenumber = request.body.phonenumber;
+
+  var newUserRow = name + "," + email + "," + phonenumber + "\n";
+
+  fs.appendFile(
+    path.join(__dirname, "../db", "users.csv"),
+    newUserRow,
+    function(error) {
+      return response.redirect("/users/");
+    }
+  );
 });
 
 
