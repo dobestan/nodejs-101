@@ -3,12 +3,14 @@ var router = express.Router();
 
 
 router.get("/", function(request, response) {
-  return response.send("hello world");
+  var data = request.query;
+  return response.send(data);
 });
 
 
 router.post("/", function(request, response) {
-  return response.send("hello world - post");
+  var data = request.body;
+  return response.send(data);
 });
 
 

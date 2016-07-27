@@ -1,5 +1,7 @@
 var express = require("express");
 
+var bodyParser = require("body-parser");
+
 
 var homeRouter = require("./routes/home");
 var httpRouter = require("./routes/http");
@@ -7,6 +9,11 @@ var usersRouter = require("./routes/users");
 
 
 var app = express();
+
+
+// Middleware - body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 // Middleware - Router
