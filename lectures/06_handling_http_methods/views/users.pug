@@ -1,0 +1,18 @@
+extends ./base
+
+
+block content
+    h1 Users List
+
+    ul
+        each user in users
+            li #{user.name} | #{user.email} | #{user.phonenumber}
+
+
+    h2 Create User
+
+    form(action="/users/" method="POST")
+        input(type="text" name="name" placeholder="이름" required)
+        input(type="email" name="email" placeholder="이메일" required)
+        input(type="text" name="phonenumber" placeholder="휴대폰 번호" required)
+        input(type="submit" value="create")
