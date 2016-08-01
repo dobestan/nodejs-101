@@ -5,7 +5,9 @@ var Movie = require("../models/movie");
 
 
 router.get("/", function(request, response) {
-  Movie.find({}, function(error, movies) {
+  var query = request.query.query;
+
+  Movie.find({title: {$regex: ".*" + query + ".*"}}, function(error, movies) {
     return response.render("movies", {movieItems: movies});
   });
 });
