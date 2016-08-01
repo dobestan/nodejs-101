@@ -2,12 +2,16 @@ var path = require("path");
 
 var express = require("express");
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 
 
 var homeRouter = require("./routes/home");
 
 
 var app = express();
+
+
+mongoose.connect("mongodb://localhost/nodecamp");
 
 
 // Application Settings
