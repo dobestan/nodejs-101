@@ -7,6 +7,7 @@ var mongoose = require("mongoose");
 
 var homeRouter = require("./routes/home");
 var moviesRouter = require("./routes/movies");
+var contactsRouter = require("./routes/contacts");
 
 
 var app = express();
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Middleware - Router
 app.use("/", homeRouter);
 app.use("/movies/", moviesRouter);
+app.use("/contacts/", contactsRouter);
 
 
 app.listen(3000, function() {
