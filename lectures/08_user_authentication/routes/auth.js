@@ -10,7 +10,15 @@ router.get("/login/", function(request, response) {
 
 
 router.post("/login/", function(request, response) {
-  return response.send("login");
+  var username = request.body.username;
+  var password = request.body.password;
+
+  User.authenticate(username, password, function(error, user) {
+    if (error) throw error;
+
+    // FIXME: should save userId to session.
+    return response.redirect("/");
+  });
 });
 
 
