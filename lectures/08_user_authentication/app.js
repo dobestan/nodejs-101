@@ -35,6 +35,12 @@ app.use("/", homeRouter);
 app.use("/", authRouter);
 
 
+app.use(function(err, req, res, next) {
+  response.status = error.status || 500;
+  return response.render("error", {error: error});
+});
+
+
 app.listen(3000, function() {
   console.log("Server is running");
 });
