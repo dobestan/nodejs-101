@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var bcrypt = require("bcrypt");
 
 
 var userSchema = new mongoose.Schema({
@@ -31,6 +32,23 @@ var userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+});
+
+
+userSchema.pre("save", function(next) {
+  var user = this;
+
+  bcrypt.hash(this.password, 10, function(error, hash) {
+    if (error) return next(error);
+
+    var newPassword = hash;
+    user.password = newPassword;
+
+    // TODO: should send sms to user
+    console.log("Sending signup congrat SMS to " + user.phonenumber);
+
+    return next();
+  });
 });
 
 
