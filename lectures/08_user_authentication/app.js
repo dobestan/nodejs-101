@@ -35,7 +35,7 @@ app.use("/", homeRouter);
 app.use("/", authRouter);
 
 
-app.use(function(err, req, res, next) {
+app.use(function(error, request, response, next) {
   response.status = error.status || 500;
   return response.render("error", {error: error});
 });
