@@ -74,8 +74,6 @@ userSchema.statics.authenticate = function(username, password, callback) {
         }
       });
     });
-
-  bcrypt.compareko
 }
 
 
