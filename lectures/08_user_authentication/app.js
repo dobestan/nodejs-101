@@ -10,6 +10,7 @@ var messages = require("express-messages");
 
 var homeRouter = require("./routes/home");
 var authRouter = require("./routes/auth");
+var flashRouter = require("./routes/flash");
 
 
 mongoose.connect("mongodb://localhost/nodecamp");
@@ -56,6 +57,7 @@ app.use(function(request, response, next) {
 
 app.use("/", homeRouter);
 app.use("/", authRouter);
+app.use("/flash/", flashRouter);
 
 
 app.use(function(error, request, response, next) {
