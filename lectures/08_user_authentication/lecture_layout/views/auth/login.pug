@@ -1,0 +1,10 @@
+extends ../base
+
+
+block content
+    h1 Login
+
+    form(action="/login/" method="POST")
+        input(type="text" name="username" placeholder="username" required)
+        input(type="password" name="password" placeholder="password" required)
+        input(type="submit" value="submit")
