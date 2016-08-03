@@ -3,6 +3,8 @@ var router = express.Router();
 
 var User = require("../models/user");
 
+var authMiddleware = require("../middlewares/auth");
+
 
 router.get("/login/", function(request, response) {
   return response.render("auth/login");
@@ -47,6 +49,11 @@ router.post("/signup/", function(request, response) {
 
 router.get("/logout/", function(request, response) {
   return response.redirect("/");
+});
+
+
+router.get("/profile/", authMiddleware.loginRequired, function(request, response) {
+  return response.render("auth/profile");
 });
 
 
