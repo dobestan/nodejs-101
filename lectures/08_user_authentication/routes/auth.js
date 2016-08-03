@@ -16,7 +16,7 @@ router.post("/login/", function(request, response, next) {
   User.authenticate(username, password, function(error, user) {
     if (error) return next(error);
 
-    // FIXME: should save userId to session.
+    request.session.user = user;
     return response.redirect("/");
   });
 });
