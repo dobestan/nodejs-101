@@ -19,6 +19,8 @@ router.post("/login/", function(request, response, next) {
     if (error) return next(error);
 
     request.session.user = user;
+    request.flash("success", "성공적으로 로그인 되었습니다.");
+
     return response.redirect("/");
   });
 });

@@ -5,6 +5,8 @@ var bodyParser = require("body-parser");
 var morgan = require("morgan");
 var mongoose = require("mongoose");
 var session = require("express-session");
+var flash = require("connect-flash");
+var messages = require("express-messages");
 
 var homeRouter = require("./routes/home");
 var authRouter = require("./routes/auth");
@@ -31,6 +33,12 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+app.use(flash());
+app.use(function(request, response, next) {
+  response.locals.messages = messages(request, response);
+  next();
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("combined"));
