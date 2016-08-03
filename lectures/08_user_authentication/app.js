@@ -36,7 +36,7 @@ app.use("/", authRouter);
 
 
 app.use(function(error, request, response, next) {
-  response.status = error.status || 500;
+  response.status(error.status || 500);
   return response.render("error", {error: error});
 });
 
