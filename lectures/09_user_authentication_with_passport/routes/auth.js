@@ -18,16 +18,8 @@ passport.use(new LocalStrategy(function(username, password, next) {
 }));
 
 
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
-
-
-passport.deserializeUser(function(id, done) {
-  User.findOne({_id: id}, function(error, user) {
-    done(error, user);
-  });
-});
+passport.serializeUser(User.serialize);
+passport.deserializeUser(User.deserialize);
 
 
 router.route("/login/")
