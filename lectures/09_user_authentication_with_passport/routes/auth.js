@@ -9,14 +9,7 @@ var User = require("../models/user");
 var authMiddleware = require("../middlewares/auth");
 
 
-passport.use(new LocalStrategy(function(username, password, next) {
-  User.authenticate(username, password, function(error, user) {
-    if (error) return next(error);
-    return next(null, user);
-  });
-}));
-
-
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serialize());
 passport.deserializeUser(User.deserialize());
 
