@@ -6,8 +6,8 @@ var User = require("../models/user");
 var authMiddleware = require("../middlewares/auth");
 
 
-router.get("/login/", function(request, response) {
-  return response.render("auth/login");
+router.get("/login/", authMiddleware.logoutRequired, function(request, response) {
+    return response.render("auth/login");
 });
 
 
@@ -26,7 +26,7 @@ router.post("/login/", function(request, response, next) {
 });
 
 
-router.get("/signup/", function(request, response) {
+router.get("/signup/", authMiddleware.logoutRequired, function(request, response) {
   return response.render("auth/signup");
 });
 
