@@ -7,6 +7,7 @@ var mongoose = require("mongoose");
 var session = require("express-session");
 var flash = require("connect-flash");
 var messages = require("express-messages");
+var passport = require("passport");
 
 var homeRouter = require("./routes/home");
 var authRouter = require("./routes/auth");
@@ -47,9 +48,12 @@ app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use(function(request, response, next) {
-  response.locals.user = request.session.user;
+  response.locals.user = request.user;
 
   next();
 });

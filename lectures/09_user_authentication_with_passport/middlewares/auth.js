@@ -1,5 +1,5 @@
 function loginRequired(request, response, next) {
-  if (!request.session.user) {
+  if (!request.user) {
     request.flash("error", "로그인이 필요한 페이지입니다.");
     return response.redirect("/login/");
   }
@@ -9,7 +9,7 @@ function loginRequired(request, response, next) {
 
 
 function logoutRequired(request, response, next) {
-  if (request.session.user) {
+  if (request.user) {
     return response.redirect("/");
   }
 
