@@ -17,8 +17,8 @@ passport.use(new LocalStrategy(function(username, password, next) {
 }));
 
 
-passport.serializeUser(User.serialize);
-passport.deserializeUser(User.deserialize);
+passport.serializeUser(User.serialize());
+passport.deserializeUser(User.deserialize());
 
 
 router.route("/login/")

@@ -77,15 +77,19 @@ userSchema.statics.authenticate = function(username, password, callback) {
 }
 
 
-userSchema.statics.serialize = function(user, callback) {
-  return callback(null, user._id);
+userSchema.statics.serialize = function() {
+  return function(user, callback) {
+    return callback(null, user._id);
+  }
 }
 
 
-userSchema.statics.deserialize = function(id, callback) {
-  User.findOne({_id: id}, function(error, user) {
-    return callback(error, user);
-  });
+userSchema.statics.deserialize = function() {
+  return function(id, callback) {
+    User.findOne({_id: id}, function(error, user) {
+      return callback(error, user);
+    });
+  }
 }
 
 
