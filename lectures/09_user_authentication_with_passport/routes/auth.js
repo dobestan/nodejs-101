@@ -10,7 +10,6 @@ var authMiddleware = require("../middlewares/auth");
 
 
 passport.use(new LocalStrategy(function(username, password, next) {
-  console.log("이건 대체 언제 실행되는건강/?");
   User.authenticate(username, password, function(error, user) {
     if (error) return next(error);
     return next(null, user);
