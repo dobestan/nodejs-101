@@ -9,11 +9,6 @@ var User = require("../models/user");
 var authMiddleware = require("../middlewares/auth");
 
 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serialize());
-passport.deserializeUser(User.deserialize());
-
-
 router.route("/login/")
   .all(authMiddleware.logoutRequired)
   .get(function(request, response) {
