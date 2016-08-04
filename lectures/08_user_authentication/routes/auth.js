@@ -31,7 +31,7 @@ router.get("/signup/", function(request, response) {
 });
 
 
-router.post("/signup/", function(request, response) {
+router.post("/signup/", function(request, response, next) {
   // FIXME: should validate user
 
   var user = new User({
@@ -42,7 +42,7 @@ router.post("/signup/", function(request, response) {
   });
 
   user.save(function(error, user) {
-    if (error) throw error;
+    if (error) return next(error);
     return response.redirect("/");
   });
 });
