@@ -54,4 +54,15 @@ router.get("/profile/", authMiddleware.loginRequired, function(request, response
 });
 
 
+router.get("/auth/facebook/", passport.authenticate("facebook"));
+
+
+router.get("/auth/facebook/callback",
+  passport.authenticate("facebook", {failureRedirect: "/login/"}),
+  function (request, response) {
+    return response.redirect("/");
+  }
+)
+
+
 module.exports = router;
