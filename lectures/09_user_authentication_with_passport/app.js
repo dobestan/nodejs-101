@@ -12,6 +12,7 @@ var passport = require("passport");
 var homeRouter = require("./routes/home");
 var authRouter = require("./routes/auth");
 var flashRouter = require("./routes/flash");
+var postsRouter = require("./routes/posts");
 
 
 mongoose.connect("mongodb://localhost/nodecamp");
@@ -64,6 +65,7 @@ app.use(function(request, response, next) {
 app.use("/", homeRouter);
 app.use("/", authRouter);
 app.use("/flash/", flashRouter);
+app.use("/posts/", postsRouter);
 
 
 app.use(function(error, request, response, next) {

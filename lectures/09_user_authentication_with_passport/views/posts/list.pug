@@ -1,0 +1,11 @@
+extends ../base
+
+
+block content
+    h1 Posts
+
+    ul
+        each post in posts
+            li
+                h2 #{post.title}
+                p #{post.content}
