@@ -32,4 +32,13 @@ router.get("/new/", function(request, response) {
 });
 
 
+router.get("/:postId/", function(request, response) {
+  var postId = request.params.postId;
+
+  Post.findOne({_id: postId}, function(error, post) {
+    return response.render("posts/detail", {post: post});
+  });
+});
+
+
 module.exports = router;
