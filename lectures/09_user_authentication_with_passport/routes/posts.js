@@ -32,12 +32,17 @@ router.get("/new/", function(request, response) {
 });
 
 
-router.get("/:postId/", function(request, response) {
-  var postId = request.params.postId;
-
+router.param("postId", function(request, response, next, postId) {
   Post.findOne({_id: postId}, function(error, post) {
-    return response.render("posts/detail", {post: post});
+    if (error) return next(error);
+    request.post = post;
+    next();
   });
+});
+
+
+router.get("/:postId/", function(request, response) {
+  return response.render("posts/detail", {post: request.post});
 });
 
 
