@@ -16,6 +16,7 @@ var authRouter = require("./routes/auth");
 var flashRouter = require("./routes/flash");
 var postsRouter = require("./routes/posts");
 var apiRouter = require("./routes/api");
+var chatRouter = require("./routes/chat");
 
 
 mongoose.connect("mongodb://localhost/nodecamp");
@@ -72,6 +73,7 @@ app.use("/", authRouter);
 app.use("/flash/", flashRouter);
 app.use("/posts/", postsRouter);
 app.use("/api/", apiRouter);
+app.use("/chat/", chatRouter);
 
 
 app.use(function(error, request, response, next) {
@@ -82,6 +84,11 @@ app.use(function(error, request, response, next) {
 
 io.on("connection", function(socket) {
   console.log("Socket is connected");
+
+  socket.on("chat", function(message) {
+    console.log("Chat: " + message);
+    io.emit("chat", message);
+  });
 
   socket.on("disconnect", function() {
     console.log("Socket is disconnected");
