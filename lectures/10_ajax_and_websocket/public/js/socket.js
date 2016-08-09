@@ -13,6 +13,10 @@ $(document).ready(function() {
     $("#chat ul").append($("<li>").text(message));
   });
 
+  socket.on("notice", function(message) {
+    alert(message);
+  });
+
   $("#chat form").submit(function() {
     var message = $(this).find("input[name='message']").val();
 

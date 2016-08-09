@@ -68,6 +68,14 @@ app.use(function(request, response, next) {
 });
 
 
+require("./socket")(io);
+
+app.use(function(request, response, next) {
+  request.io = io;
+  next();
+});
+
+
 app.use("/", homeRouter);
 app.use("/", authRouter);
 app.use("/flash/", flashRouter);
@@ -76,13 +84,14 @@ app.use("/api/", apiRouter);
 app.use("/chat/", chatRouter);
 
 
+
+
 app.use(function(error, request, response, next) {
   response.status(error.status || 500);
   return response.render("error", {error: error});
 });
 
 
-require("./socket")(io);
 
 
 httpServer.listen(3000, function() {
