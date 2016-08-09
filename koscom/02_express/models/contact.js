@@ -24,8 +24,12 @@ function readContact(callback) {
 }
 
 
-function addContact(contact) {
-  //
+function addContact(contact, callback) {
+  var filepath = path.join(__dirname, "../data", "contacts.csv");
+  // return fs.appendFileSync(filepath, contact);
+  fs.appendFile(filepath, contact, function(error) {
+    return callback(error);
+  });
 }
 
 
