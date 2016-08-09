@@ -7,7 +7,13 @@ var contact = require("../models/contact");
 
 // contacts:list
 router.get("/", function(req, res, next) {
-  return res.render("contacts/list", {});
+  // var contacts = contact.read();
+
+  // var data = contact.read()
+  // contact.read(  function(error, contacts) {...}  );
+  contact.read(function(error, contacts) {
+    return res.render("contacts/list", {contacts: contacts});
+  });
 });
 
 

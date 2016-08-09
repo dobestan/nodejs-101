@@ -4,6 +4,12 @@ extends ../layout
 block content
     h1 Contacts List
 
+    p #{contacts.length} 개의 연락처가 있습니다.
+
+    ul
+        each contact in contacts
+            li #{contact.name} | #{contact.email} | #{contact.phonenumber}
+
     form(action="/contacts/" method="POST")
         input(type="text" name="name" placeholder="name" required)
         input(type="email" name="email" placeholder="email" required)
