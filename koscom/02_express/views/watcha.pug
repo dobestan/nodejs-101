@@ -1,0 +1,13 @@
+extends ./layout
+
+
+block content
+    h1 Watcha News
+    p #{newsItems.length} 개의 영화 정보가 있습니다.
+
+    ul
+        each newsItem in newsItems
+            li
+                img(src=newsItem.image width="100%")
+                h2= newsItem.title
+                p= newsItem.content

@@ -1,2 +1,10 @@
-h1 Home
-p This is home
+extends ./layout
+
+
+block content
+    h1 Home
+    p This is home
+
+    ul
+        each animal in animals
+            li #{animal}

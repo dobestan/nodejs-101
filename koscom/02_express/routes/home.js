@@ -3,7 +3,9 @@ var router = express.Router();  // => `function(req, res, next)`
 
 
 router.get("/", function(req, res, next) {
-  return res.render("home");
+  var animals = ["dog", "cat", "bird", "cow"];
+
+  return res.render("home", {animals: animals});
 });
 
 
