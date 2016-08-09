@@ -36,6 +36,17 @@ app.use("/methods/", methodsRouter);
 app.use("/contacts/", contactsRouter);
 
 
+// Error Handling Middleware
+app.use(function(error, req, res, next) {
+  res.status(error.status || 500);
+  return res.render("error", {error: error});
+
+  next();
+});
+// next(); ===> function(req, res, next);
+// next(error); ===> function(error, req, res, next);
+
+
 app.listen(3000, function() {
   console.log("Server is listening");
 });
