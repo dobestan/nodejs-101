@@ -1,0 +1,11 @@
+extends ../layout
+
+
+block content
+    h1 Contacts List
+
+    form(action="/contacts/" method="POST")
+        input(type="text" name="name" placeholder="name" required)
+        input(type="email" name="email" placeholder="email" required)
+        input(type="text" name="phonenumber" placeholder="phonenumber" required)
+        input(type="submit" value="create")

@@ -14,8 +14,10 @@ router.get("/", function(req, res, next) {
 
 // http.get()
 router.post("/", function(req, res, next) {
-  return res.json(req.myPostData);
+  return res.json(req.body);
 });
+
+// watcha 검색 기능 구현하기: `"부산행 재밌습니다.".indexOf("____") > -1` 활용
 
 
 module.exports = router;

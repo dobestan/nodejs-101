@@ -3,6 +3,13 @@ extends ./layout
 
 block content
     h1 Watcha News
+
+    form(action="/watcha/" method="GET")
+        input(type="text" name="search" value=search)
+        input(type="submit" value="검색")
+
+    if search
+        p #{search} 에 대한 검색 결과입니다.
     p #{newsItems.length} 개의 영화 정보가 있습니다.
 
     ul
