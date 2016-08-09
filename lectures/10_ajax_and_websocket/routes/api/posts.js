@@ -39,8 +39,8 @@ router.route("/:postId/")
     return response.json(request.post);
   })
   .patch(function(request, response, next) {
-    var title = request.body.title || req.post.title;
-    var content = request.body.content || req.post.content;
+    var title = request.body.title || request.post.title;
+    var content = request.body.content || request.post.content;
 
     request.post.title = title;
     request.post.content = content;
