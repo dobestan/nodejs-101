@@ -1,5 +1,6 @@
 var path = require("path");
 
+var http = require("http");
 var express = require("express");
 var bodyParser = require("body-parser");
 var morgan = require("morgan");
@@ -8,6 +9,7 @@ var session = require("express-session");
 var flash = require("connect-flash");
 var messages = require("express-messages");
 var passport = require("passport");
+var socketio = require("socket.io");
 
 var homeRouter = require("./routes/home");
 var authRouter = require("./routes/auth");
@@ -26,6 +28,8 @@ db.once("open", function() {
 
 
 var app = express();
+var httpServer = http.Server(app);
+var io = socketio(httpServer);
 
 
 app.set("views", path.join(__dirname, "views"));
@@ -76,6 +80,15 @@ app.use(function(error, request, response, next) {
 });
 
 
-app.listen(3000, function() {
+io.on("connection", function(socket) {
+  console.log("Socket is connected");
+
+  socket.on("disconnect", function() {
+    console.log("Socket is disconnected");
+  });
+});
+
+
+httpServer.listen(3000, function() {
   console.log("Server is running");
 });
