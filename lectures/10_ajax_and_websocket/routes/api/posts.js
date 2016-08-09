@@ -25,4 +25,35 @@ router.route("/")
   });
 
 
+router.param("postId", function(request, response, next, postId) {
+  Post.findOne({_id: postId}, function(error, post) {
+    if (error) return next(error);
+    request.post = post;
+    next();
+  });
+});
+
+
+router.route("/:postId/")
+  .get(function(request, response, next) {
+    return response.json(request.post);
+  })
+  .patch(function(request, response, next) {
+    var title = request.body.title || req.post.title;
+    var content = request.body.content || req.post.content;
+
+    request.post.title = title;
+    request.post.content = content;
+
+    request.post.save(function(error, post) {
+      return response.status(204).send();
+    });
+  })
+  .delete(function(request, response, next) {
+    request.post.remove(function(error) {
+      return response.status(204).send();
+    });
+  });
+
+
 module.exports = router;
