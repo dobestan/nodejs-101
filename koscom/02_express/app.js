@@ -2,6 +2,9 @@ var path = require("path");
 var express = require("express");
 var morgan = require("morgan");
 var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
+var csurf = require("csurf");
 
 var homeRouter = require("./routes/home");
 var zigbangRouter = require("./routes/zigbang");
@@ -24,6 +27,17 @@ app.set("views", path.join(__dirname, "views"));
 app.use( morgan("combined") );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({extended: true}) );
+
+// var cookieParser = require("cookie-parser");
+// var session = require("express-session");
+app.use( cookieParser() );
+app.use( session({
+  secret: "node.js",
+  resave: true,
+  saveUninitialized: true
+}) );
+app.use( csurf({cookie: true}) );
+
 
 // app.use( methodMiddleware.getPostDataMiddleware() );
 
