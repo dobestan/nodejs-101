@@ -42,6 +42,14 @@ app.use( csurf({cookie: true}) );
 // app.use( methodMiddleware.getPostDataMiddleware() );
 
 
+app.use( function(req, res, next) {
+  // res.render(templateName, context);
+  // context ( == res.locals )
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
+
 // Routers
 app.use("/", homeRouter);
 app.use("/zigbang/", zigbangRouter);

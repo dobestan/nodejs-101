@@ -8,7 +8,7 @@ var contact = require("../models/contact");
 // contacts:list
 router.get("/", function(req, res, next) {
   contact.read(function(error, contacts) {
-    return res.render("contacts/list", {contacts: contacts, csrfToken: req.csrfToken()});
+    return res.render("contacts/list", {contacts: contacts});
   });
 });
 
