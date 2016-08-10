@@ -24,7 +24,7 @@ router.get("/:roomId/", function(req, res, next) {
       image_url: image_url
     };
 
-    return res.render("zigbang", context);
+    return res.render("zigbang/detail", context);
   });
 });
 

@@ -1,0 +1,11 @@
+extends ../layout
+
+
+block content
+    h1 Rooms List
+
+    p #{rooms.length} 개의 방이 있습니다.
+
+    ul
+        each room in rooms
+            li #{room.id}, #{room.agent_address1} (#{room.deposit}, #{room.rent})
