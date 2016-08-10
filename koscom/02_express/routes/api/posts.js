@@ -30,8 +30,6 @@ router.route("/")
     var post = new Post({
       title: title,
       content: content,
-      created_at: new Date(),
-      updated_at: new Date()
     });
 
     post.save(function(error, post) {
@@ -52,7 +50,6 @@ router.route("/:postId/")
   .patch(function(req, res, next) {
     req.post.title = req.body.title || req.post.title;
     req.post.content = req.body.content || req.post.content;
-    req.post.updated_at = new Date();
 
     req.post.save(function(error, post) {
       return res.status(204).send();
