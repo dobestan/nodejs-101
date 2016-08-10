@@ -5,17 +5,28 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var csurf = require("csurf");
+var mongoose = require("mongoose");
 
 var homeRouter = require("./routes/home");
 var zigbangRouter = require("./routes/zigbang");
 var watchaRouter = require("./routes/watcha");
 var methodsRouter = require("./routes/methods");
 var contactsRouter = require("./routes/contacts");
+var postsRouter = require("./routes/posts");
 
 var methodMiddleware = require("./middlewares/method");
 
 
 var app = express();
+
+
+mongoose.connect("mongodb://mongodb.dobest.io/suchan");
+var db = mongoose.connection;
+
+
+db.once("open", function() {
+  console.log("Database is connected");
+});
 
 
 // Application Settings
@@ -36,7 +47,9 @@ app.use( session({
   resave: true,
   saveUninitialized: true
 }) );
-app.use( csurf({cookie: true}) );
+// var csrfTokenMiddleware = csurf({cookie: true});
+// function(req, res, next)
+// app.use( csurf({cookie: true}) );
 
 
 // app.use( methodMiddleware.getPostDataMiddleware() );
@@ -45,7 +58,7 @@ app.use( csurf({cookie: true}) );
 app.use( function(req, res, next) {
   // res.render(templateName, context);
   // context ( == res.locals )
-  res.locals.csrfToken = req.csrfToken();
+  // res.locals.csrfToken = req.csrfToken();
   next();
 });
 
@@ -56,6 +69,7 @@ app.use("/zigbang/", zigbangRouter);
 app.use("/watcha/", watchaRouter);
 app.use("/methods/", methodsRouter);
 app.use("/contacts/", contactsRouter);
+app.use("/posts/", postsRouter);
 
 
 // Error Handling Middleware

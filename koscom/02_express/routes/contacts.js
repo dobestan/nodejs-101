@@ -4,6 +4,9 @@ var router = express.Router();
 
 var contact = require("../models/contact");
 
+var csurf = require("csurf");
+var csrfTokenMiddleware = csurf({cookie: true});
+
 
 // contacts:list
 router.get("/", function(req, res, next) {
@@ -14,7 +17,7 @@ router.get("/", function(req, res, next) {
 
 
 // contacts:create
-router.post("/", function(req, res, next) {
+router.post("/", csrfTokenMiddleware, function(req, res, next) {
   // "안수찬,dobestan@gmail.com,01022205736\n"
   var data = req.body.name + "," + req.body.email + "," + req.body.phonenumber + "\n";
 
