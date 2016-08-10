@@ -12,7 +12,8 @@ var zigbangRouter = require("./routes/zigbang");
 var watchaRouter = require("./routes/watcha");
 var methodsRouter = require("./routes/methods");
 var contactsRouter = require("./routes/contacts");
-var postsRouter = require("./routes/posts");
+var apiRouter = require("./routes/api"); // api/index.js
+var postsRouter = require("./routes/posts"); // api/index.js
 
 var methodMiddleware = require("./middlewares/method");
 
@@ -70,6 +71,7 @@ app.use("/watcha/", watchaRouter);
 app.use("/methods/", methodsRouter);
 app.use("/contacts/", contactsRouter);
 app.use("/posts/", postsRouter);
+app.use("/api/", apiRouter);
 
 
 // Error Handling Middleware
