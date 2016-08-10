@@ -1,13 +1,21 @@
 var mongoose = require("mongoose");
 
 
+var commentSchema = new mongoose.Schema({
+  content: String,
+  created_at: Date
+});
+
+
 var postSchema = new mongoose.Schema({
   title: String,
   content: String,
 
   // timestamps
   created_at: Date,
-  updated_at: Date
+  updated_at: Date,
+
+  comments: [commentSchema]
 });
 
 
@@ -20,11 +28,6 @@ postSchema.pre("save", function(next) {
   return next();
 });
 
-
-var commentSchema = new mongoose.Schema({
-  content: String,
-  created_at: Date
-});
 
 
 commentSchema.pre("save", function(next) {

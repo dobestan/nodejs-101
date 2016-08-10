@@ -56,4 +56,18 @@ router.route("/:postId/")
   });
 
 
+router.route("/:postId/comments/")
+  .get(function(request, response, next) {
+    return response.json(request.post.comments);
+  })
+
+  .post(function(request, response, next) {
+    var comment = {content: request.body.content};
+    request.post.comments.push(comment);
+    request.post.save(function(error, post) {
+      return response.status(201).send();
+    });
+  });
+
+
 module.exports = router;
