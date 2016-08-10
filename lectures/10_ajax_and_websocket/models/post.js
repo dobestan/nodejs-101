@@ -23,6 +23,13 @@ postSchema.pre("save", function(next) {
 
 var commentSchema = new mongoose.Schema({
   content: String,
+  created_at: Date
+});
+
+
+commentSchema.pre("save", function(next) {
+  this.created_at = this.created_at || new Date();
+  next();
 });
 
 
