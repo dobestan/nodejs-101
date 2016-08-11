@@ -66,16 +66,10 @@ var User = require("./models/user");
 
 
 // Serialize - user ( db ) => userId ( req.session )
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
+passport.serializeUser( User.serialize() );
 
 // Deserialize - userId ( req.session ) => user ( req.user )
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+passport.deserializeUser( User.deserialize() );
 
 
 

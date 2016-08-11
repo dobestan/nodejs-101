@@ -66,6 +66,24 @@ userSchema.statics.authenticate = function(username, password, callback) {
 }
 
 
+// Serialize - user ( db ) => userId ( req.session )
+userSchema.statics.serialize = function() {
+  return function(user, done) {
+    done(null, user._id);
+  }
+}
+
+
+// Deserialize - userId ( req.session ) => user ( req.user )
+userSchema.statics.deserialize = function() {
+  return function(id, done) {
+    User.findById(id, function(err, user) {
+      done(err, user);
+    });
+  }
+}
+
+
 var User = mongoose.model("User", userSchema);
 
 
