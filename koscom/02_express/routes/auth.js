@@ -13,7 +13,25 @@ router.route("/login/")
   .post(function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
-    return res.send("login");
+
+    // username, password 체크
+    // User Model
+    User.findOne({username: username}, function(error, user) {
+      if (error) return next(error);
+      if (!user) {
+        req.flash("error", "일치하는 username 이 없습니다.");
+        return res.redirect("/login/");
+      }
+
+      if ( user.password === password ) {
+        req.flash("success", "성공적으로 로그인 되었습니다.");
+        // FIXME: session 에다가 user 정보 저장하기
+        return res.redirect("/");
+      } else {
+        req.flash("error", "비밀번호가 일치하지 않습니다.");
+        return res.redirect("/login/");
+      }
+    });
   });
 
 
@@ -42,6 +60,7 @@ router.route("/signup/")
     user.save(function(error, user) {
       if (error) return next(error);
 
+      // FIXME: password raw text 가 아니라, 암호화된 텍스트 ( 복호화가 불가능한 )
       req.flash("success", "성공적으로 회원가입 되었습니다.");
       return res.redirect("/");
     });
