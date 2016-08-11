@@ -1,13 +1,14 @@
 doctype html
 html
     head
+        link(rel="stylesheet" href="/static/css/application.css")
     body
         include ./partials/header
 
         if flash
             ul
-                each message in flash
-                    li= message
+                each value, key in flash
+                    li(class=key)= value
 
         section#content
             block content

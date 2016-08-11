@@ -36,6 +36,7 @@ db.once("open", function() {
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
+app.use( "/static/", express.static(path.join(__dirname, "public")) );
 
 // 3rd Party Middlewares
 app.use( morgan("combined") );
@@ -69,10 +70,8 @@ app.use( function(req, res, next) {
 
 
 app.use( function(req, res, next) {
-  req.flash("success", "보여주기 성공");
-  req.flash("error", "보여주기 실패");
-
   res.locals.flash = req.flash();
+
   next();
 });
 
