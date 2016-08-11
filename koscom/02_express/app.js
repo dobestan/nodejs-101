@@ -7,6 +7,7 @@ var session = require("express-session");
 var csurf = require("csurf");
 var mongoose = require("mongoose");
 var flash = require("connect-flash");
+var passport = require("passport");
 
 var homeRouter = require("./routes/home");
 var zigbangRouter = require("./routes/zigbang");
@@ -54,6 +55,30 @@ app.use( session({
 }) );
 app.use( flash() );
 
+
+// passport
+// Strategy -> passport.authenticate(...)
+app.use( passport.initialize() );
+app.use( passport.session() );
+
+
+var User = require("./models/user");
+
+
+// Serialize - user ( db ) => userId ( req.session )
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+// Deserialize - userId ( req.session ) => user ( req.user )
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+
+
 // var csrfTokenMiddleware = csurf({cookie: true});
 // function(req, res, next)
 // app.use( csurf({cookie: true}) );
@@ -78,7 +103,7 @@ app.use( function(req, res, next) {
 
 
 app.use( function(req, res, next) {
-  res.locals.user = req.session.user;
+  res.locals.user = req.user;
   next();
 });
 

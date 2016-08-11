@@ -4,6 +4,14 @@ var router = express.Router();
 var User = require("../models/user");
 
 
+var passport = require("passport");
+var passportLocal = require("passport-local");
+var passportLocalStrategy = passportLocal.Strategy;
+
+
+passport.use( new passportLocalStrategy( User.authenticate ) );
+
+
 router.route("/login/")
 
   .get(function(req, res, next) {
@@ -11,25 +19,14 @@ router.route("/login/")
     return res.render("auth/login", {redirectUrl: redirectUrl});
   })
 
-  .post(function(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-
-    var redirectUrl = req.body.next || "/";
-
-    User.authenticate(username, password, function(error, user) {
-      if (error) return next(error);
-      if (!user) {
-        req.flash("error", "유저 정보가 일치하지 않습니다.");
-        return res.redirect("/login/");
-      } else {
-        req.session.user = user;
-
-        req.flash("success", "성공적으로 로그인 되었습니다.");
-        return res.redirect(redirectUrl);
-      }
-    });
-  });
+  .post(
+    passport.authenticate("local"),
+    function(req, res, next) {
+      req.flash("success", "성공적으로 로그인 되었습니다.");
+      var redirectUrl = req.body.next || "/";
+      return res.redirect(redirectUrl);
+    }
+  );
 
 
 router.route("/signup/")
