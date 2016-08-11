@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var bcrypt = require("bcrypt");
 
 
 var userSchema = new mongoose.Schema({
@@ -6,7 +7,9 @@ var userSchema = new mongoose.Schema({
     type: String,
     unique: true
   },
-  password: String,
+  password: String,  // raw text
+  // "password" ======> (hash) ======> "1489382389fjdskfjsklajfklsdjafa"
+  // "passwo" ======> (hash) ======> "14....
 
   // timestamp
   created_at: Date,
@@ -15,12 +18,26 @@ var userSchema = new mongoose.Schema({
 
 
 userSchema.pre("save", function(next) {
+  // timestamp
   var user = this;
 
   user.created_at = user.created_at || new Date();
   user.updated_at = new Date();
 
   next();
+});
+
+
+userSchema.pre("save", function(next) {
+  // password hash
+  var user = this;
+
+  bcrypt.hash(user.password, 10, function(error, hash) {
+    console.log(user.password + " ===> " + hash);
+
+    user.password = hash;
+    next();
+  });
 });
 
 
