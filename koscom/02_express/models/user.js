@@ -13,7 +13,10 @@ var userSchema = new mongoose.Schema({
 
   // timestamp
   created_at: Date,
-  updated_at: Date
+  updated_at: Date,
+
+  facebookId: String,
+  kakaoId: String
 });
 
 
@@ -63,6 +66,27 @@ userSchema.statics.authenticate = function() {
       } else {
         return callback(null, user);
       }
+    });
+  }
+}
+
+
+userSchema.statics.authenticateFacebook = function() {
+  return function(accessToken, refreshToken, profile, callback) {
+    User.findOne({facebookId: profile.id}, function(error, user) {
+      if (error) return callback(error, null);
+      if (user) return callback(error, user);
+
+      var user = new User({
+        username: profile.id,
+        password: profile.id, // FIXME: random password
+        facebookId: profile.id
+      });
+
+      user.save(function(error, user) {
+        if (error) return callback(error, null);
+        return callback(error, user);
+      });
     });
   }
 }

@@ -62,4 +62,20 @@ router.route("/logout")
   });
 
 
+// Facebook Login
+// Consumer => Service Provider
+router.route("/auth/facebook/")
+  .get(passport.authenticate("facebook"));
+
+
+// Authorize => Service Provider => Consumer
+router.route("/auth/facebook/callback/")
+  .get(
+    passport.authenticate("facebook"),
+    function(req, res, next) {
+      req.flash("성공적으로 페이스북 로그인 되었습니다.");
+      return res.redirect("/");
+    }
+  )
+
 module.exports = router;
