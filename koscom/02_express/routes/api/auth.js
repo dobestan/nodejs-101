@@ -13,7 +13,7 @@ router.route("/")
     User.authenticate()(username, password, function(error, user) {
       if (error) return next(error);
       if (!user) return res.status(400).send({message: "유저 정보가 올바르지 않습니다."});
-      var token = jwt.sign(user, "something secret key");
+      var token = jwt.sign(user, app.get("jwtSecret"));
       return res.json({token: token});
     });
   });

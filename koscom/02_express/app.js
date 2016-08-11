@@ -38,6 +38,8 @@ db.once("open", function() {
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
+app.set("jwtSecret", "Something secret key");
+
 app.use( "/static/", express.static(path.join(__dirname, "public")) );
 
 // 3rd Party Middlewares
