@@ -21,6 +21,8 @@ var authRouter = require("./routes/auth");
 
 var methodMiddleware = require("./middlewares/method");
 
+var config = require("./config");
+
 
 var app = express();
 
@@ -38,7 +40,7 @@ db.once("open", function() {
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
-app.set("jwtSecret", "Something secret key");
+app.set("jwtSecret", config.jwtSecret);
 
 app.use( "/static/", express.static(path.join(__dirname, "public")) );
 
