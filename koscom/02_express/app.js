@@ -65,10 +65,7 @@ app.use( passport.session() );
 var User = require("./models/user");
 
 
-// Serialize - user ( db ) => userId ( req.session )
 passport.serializeUser( User.serialize() );
-
-// Deserialize - userId ( req.session ) => user ( req.user )
 passport.deserializeUser( User.deserialize() );
 
 

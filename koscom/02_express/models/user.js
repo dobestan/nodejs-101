@@ -51,18 +51,20 @@ userSchema.pre("save", function(next) {
 
 
 // User.authenticate
-userSchema.statics.authenticate = function(username, password, callback) {
-  User.findOne({username: username}, function(error, user) {
-    if (error) return callback(error, null);
-    if (!user) return callback(null, null);
+userSchema.statics.authenticate = function() {
+  return function(username, password, callback) {
+    User.findOne({username: username}, function(error, user) {
+      if (error) return callback(error, null);
+      if (!user) return callback(null, null);
 
-    // password compare
-    if ( !bcrypt.compareSync(password, user.password) ) {
-      return callback(null, null);
-    } else {
-      return callback(null, user);
-    }
-  });
+      // password compare
+      if ( !bcrypt.compareSync(password, user.password) ) {
+        return callback(null, null);
+      } else {
+        return callback(null, user);
+      }
+    });
+  }
 }
 
 
