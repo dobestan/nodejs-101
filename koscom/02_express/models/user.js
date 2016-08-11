@@ -24,6 +24,22 @@ userSchema.pre("save", function(next) {
 });
 
 
+// User.authenticate
+userSchema.statics.authenticate = function(username, password, callback) {
+  User.findOne({username: username}, function(error, user) {
+    if (error) return callback(error, null);
+    if (!user) return callback(null, null);
+
+    // password compare
+    if ( user.password !== password ) {
+      return callback(null, null);
+    } else {
+      return callback(null, user);
+    }
+  });
+}
+
+
 var User = mongoose.model("User", userSchema);
 
 
