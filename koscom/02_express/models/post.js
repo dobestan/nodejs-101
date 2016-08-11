@@ -1,12 +1,34 @@
 var mongoose = require("mongoose");
 
 
+var commentSchema = new mongoose.Schema({
+  content: String,
+
+  created_at: Date,
+  updated_at: Date
+});
+
+
+commentSchema.pre("save", function(next) {
+  var comment = this;
+
+  comment.created_at = comment.created_at || new Date();
+  comment.updated_at = new Date();
+
+  next();
+});
+
+
 // 1. Model 에 대한 구조 ( Schema ) 를 생성한다.
 var postSchema = new mongoose.Schema({
   title: String,
   content: String,
+
   created_at: Date,
-  updated_at: Date
+  updated_at: Date,
+
+  comments: [commentSchema]  // sub document
+                             // 60MB
 });
 
 
