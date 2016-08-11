@@ -2,16 +2,18 @@ extends ../layout
 
 
 block content
-    block title
+    section#chat(data-room-id=roomId)
+        block title
 
-    ul
-        li
-            a(href="/chats/") 단체 채팅방
-        li
-            a(href="/chats/foods/") 맛집
-        li
-            a(href="/chats/programming/") 프로그래밍
-        li
-            a(href="/chats/animals/") 동물
+        ul
+            li
+                a(href="/chats/") 단체 채팅방
+            li
+                a(href="/chats/foods/") 맛집
+            li
+                a(href="/chats/programming/") 프로그래밍
+            li
+                a(href="/chats/animals/") 동물
 
-    include ./form
+        include ./history
+        include ./form

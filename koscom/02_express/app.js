@@ -8,6 +8,8 @@ var csurf = require("csurf");
 var mongoose = require("mongoose");
 var flash = require("connect-flash");
 var passport = require("passport");
+var socketio = require("socket.io");
+var http = require("http");
 
 var homeRouter = require("./routes/home");
 var zigbangRouter = require("./routes/zigbang");
@@ -26,6 +28,8 @@ var config = require("./config");
 
 
 var app = express();
+var httpServer = http.Server(app);
+var io = socketio(httpServer);
 
 
 mongoose.connect("mongodb://mongodb.dobest.io/suchan");
@@ -122,6 +126,15 @@ app.use(function(error, req, res, next) {
 // next(error); ===> function(error, req, res, next);
 
 
-app.listen(3000, function() {
+io.on("connect", function(socket) {
+  console.log("Socket is connected: " + socket.id);
+
+  socket.on("disconnect", function() {
+    console.log("Socket is disconnected: " + socket.id);
+  });
+});
+
+
+httpServer.listen(3000, function() {
   console.log("Server is listening");
 });
