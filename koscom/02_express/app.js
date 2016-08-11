@@ -129,6 +129,11 @@ app.use(function(error, req, res, next) {
 io.on("connect", function(socket) {
   console.log("Socket is connected: " + socket.id);
 
+  socket.on("chat", function(chat) {
+    console.log("chat: ", chat);
+    io.emit("chat", chat);
+  });
+
   socket.on("disconnect", function() {
     console.log("Socket is disconnected: " + socket.id);
   });
