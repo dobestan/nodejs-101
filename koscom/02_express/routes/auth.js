@@ -7,12 +7,15 @@ var User = require("../models/user");
 router.route("/login/")
 
   .get(function(req, res, next) {
-    return res.render("auth/login");
+    var redirectUrl = req.query.next || "/";
+    return res.render("auth/login", {redirectUrl: redirectUrl});
   })
 
   .post(function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
+
+    var redirectUrl = req.body.next || "/";
 
     User.authenticate(username, password, function(error, user) {
       if (error) return next(error);
@@ -23,7 +26,7 @@ router.route("/login/")
         req.session.user = user;
 
         req.flash("success", "성공적으로 로그인 되었습니다.");
-        return res.redirect("/");
+        return res.redirect(redirectUrl);
       }
     });
   });

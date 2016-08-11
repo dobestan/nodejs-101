@@ -31,7 +31,7 @@ router.route("/")
 
 router.route("/new/")
   .get(
-    authMiddleware.loginRequired,
+    authMiddleware.loginRequired(),
     function(req, res, next) {
       return res.render("posts/new");
     }

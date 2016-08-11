@@ -5,6 +5,7 @@ block content
     h1 Login
 
     form(action="/login/" method="POST")
+        input(type="text" name="next" value=redirectUrl)
         input(type="text" name="username" placeholder="username" required)
         input(type="password" name="password" placeholder="password" required)
 
