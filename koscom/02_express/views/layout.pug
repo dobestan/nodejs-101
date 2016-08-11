@@ -3,6 +3,12 @@ html
     head
     body
         include ./partials/header
+
+        if flash
+            ul
+                each message in flash
+                    li= message
+
         section#content
             block content
         include ./partials/footer

@@ -1,0 +1,10 @@
+extends ../layout
+
+
+block content
+    h1 New Post
+
+    form(action="/posts/" method="POST")
+        input(type="text" name="title" placeholder="제목" required)
+        textarea(name="content" placeholder="본문")
+        input(type="submit" value="publish")

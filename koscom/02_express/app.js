@@ -68,6 +68,15 @@ app.use( function(req, res, next) {
 });
 
 
+app.use( function(req, res, next) {
+  req.flash("success", "보여주기 성공");
+  req.flash("error", "보여주기 실패");
+
+  res.locals.flash = req.flash();
+  next();
+});
+
+
 // Routers
 app.use("/", homeRouter);
 app.use("/zigbang/", zigbangRouter);
