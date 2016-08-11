@@ -6,6 +6,7 @@ var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var csurf = require("csurf");
 var mongoose = require("mongoose");
+var flash = require("connect-flash");
 
 var homeRouter = require("./routes/home");
 var zigbangRouter = require("./routes/zigbang");
@@ -14,6 +15,7 @@ var methodsRouter = require("./routes/methods");
 var contactsRouter = require("./routes/contacts");
 var apiRouter = require("./routes/api"); // api/index.js
 var postsRouter = require("./routes/posts"); // api/index.js
+var flashRouter = require("./routes/flash");
 
 var methodMiddleware = require("./middlewares/method");
 
@@ -48,6 +50,8 @@ app.use( session({
   resave: true,
   saveUninitialized: true
 }) );
+app.use( flash() );
+
 // var csrfTokenMiddleware = csurf({cookie: true});
 // function(req, res, next)
 // app.use( csurf({cookie: true}) );
@@ -72,6 +76,7 @@ app.use("/methods/", methodsRouter);
 app.use("/contacts/", contactsRouter);
 app.use("/posts/", postsRouter);
 app.use("/api/", apiRouter);
+app.use("/flash/", flashRouter);
 
 
 // Error Handling Middleware
