@@ -5,12 +5,19 @@ var Post = require("../../../models/post");
 
 var commentsRouter = require("./comments");
 
+var passport = require("passport");
+
+
+router.use(passport.authenticate("jwt"));
+
 
 router.param("postId", function(req, res, next, postId) {
   Post.findById(postId, function(error, post) {
     if (error) return next(error); // error handling mid
-    req.post = post;
-    next();
+    post.populate("_owner", "username", function(error, post) {
+      req.post = post;
+      next();
+    });
   });
 });
 
@@ -29,7 +36,10 @@ router.route("/")
     var title = req.body.title;
     var content = req.body.content;
 
+    console.log(req.user);
+
     var post = new Post({
+      _owner: req.user._id,
       title: title,
       content: content,
     });

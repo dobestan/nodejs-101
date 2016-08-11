@@ -21,6 +21,10 @@ commentSchema.pre("save", function(next) {
 
 // 1. Model 에 대한 구조 ( Schema ) 를 생성한다.
 var postSchema = new mongoose.Schema({
+  _owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   title: String,
   content: String,
 
