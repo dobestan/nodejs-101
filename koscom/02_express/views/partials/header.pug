@@ -7,3 +7,11 @@ header
             a(href="/about/") About
         li
             a(href="/zigbang/3456789/") Zigbang Example
+        if !user
+            li
+                a(href="/signup/") signup
+            li
+                a(href="/login/") login
+        if user
+            li
+                a(href="/logout/") logout

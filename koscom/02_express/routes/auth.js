@@ -20,6 +20,8 @@ router.route("/login/")
         req.flash("error", "유저 정보가 일치하지 않습니다.");
         return res.redirect("/login/");
       } else {
+        req.session.user = user;
+
         req.flash("success", "성공적으로 로그인 되었습니다.");
         return res.redirect("/");
       }
@@ -60,7 +62,11 @@ router.route("/signup/")
 
 
 router.route("/logout")
-  .get
+  .get(function(req, res, next) {
+    req.session.user = null;
+    req.flash("success", "성공적으로 로그아웃 되었습니다.");
+    return res.redirect("/");
+  });
 
 
 module.exports = router;

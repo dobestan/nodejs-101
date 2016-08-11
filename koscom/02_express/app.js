@@ -77,6 +77,12 @@ app.use( function(req, res, next) {
 });
 
 
+app.use( function(req, res, next) {
+  res.locals.user = req.session.user;
+  next();
+});
+
+
 // Routers
 app.use("/", homeRouter);
 app.use("/zigbang/", zigbangRouter);
