@@ -16,6 +16,7 @@ var contactsRouter = require("./routes/contacts");
 var apiRouter = require("./routes/api"); // api/index.js
 var postsRouter = require("./routes/posts"); // api/index.js
 var flashRouter = require("./routes/flash");
+var authRouter = require("./routes/auth");
 
 var methodMiddleware = require("./middlewares/method");
 
@@ -85,6 +86,7 @@ app.use("/contacts/", contactsRouter);
 app.use("/posts/", postsRouter);
 app.use("/api/", apiRouter);
 app.use("/flash/", flashRouter);
+app.use("/", authRouter);
 
 
 // Error Handling Middleware
