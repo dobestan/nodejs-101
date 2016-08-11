@@ -119,8 +119,6 @@ app.use("/", authRouter);
 app.use(function(error, req, res, next) {
   res.status(error.status || 500);
   return res.render("error", {error: error});
-
-  next();
 });
 // next(); ===> function(req, res, next);
 // next(error); ===> function(error, req, res, next);

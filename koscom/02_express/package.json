@@ -26,5 +26,9 @@
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta4",
     "request": "^2.74.0"
+  },
+  "devDependencies": {
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.2"
   }
 }
