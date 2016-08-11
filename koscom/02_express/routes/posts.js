@@ -3,6 +3,8 @@ var router = express.Router();
 
 var Post = require("../models/post");
 
+var authMiddleware = require("../middlewares/auth");
+
 
 router.route("/")
 
@@ -28,9 +30,12 @@ router.route("/")
 
 
 router.route("/new/")
-  .get(function(req, res, next) {
-    return res.render("posts/new");
-  });
+  .get(
+    authMiddleware.loginRequired,
+    function(req, res, next) {
+      return res.render("posts/new");
+    }
+  );
 
 
 module.exports = router;
