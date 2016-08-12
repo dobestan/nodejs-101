@@ -28,7 +28,7 @@ module.exports = function(passport) {
   passport.use( new passportJwtStrategy(
     {
       secretOrKey: "dkstncks",
-      jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme("JWT")
+      jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme("Bearer")
     },
     function(user, callback) {
       console.log(user);
