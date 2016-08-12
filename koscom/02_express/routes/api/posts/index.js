@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var passport = require("passport");
 
 var Post = require("../../../models/post");
 
@@ -25,20 +26,24 @@ router.route("/")
     });
   })
 
-  .post(function(req, res, next) {
-    var title = req.body.title;
-    var content = req.body.content;
+  .post(
+    passport.authenticate("jwt"),
+    function(req, res, next) {
+      var title = req.body.title;
+      var content = req.body.content;
 
-    var post = new Post({
-      title: title,
-      content: content,
-    });
+      var post = new Post({
+        title: title,
+        content: content,
+        _owner: req.user._id
+      });
 
-    post.save(function(error, post) {
-      // 201 CREATED
-      return res.status(201).send("Successfully created");
-    });
-  });
+      post.save(function(error, post) {
+        // 201 CREATED
+        return res.status(201).send("Successfully created");
+      });
+    }
+  );
 
 
 router.route("/:postId/")
