@@ -17,7 +17,7 @@ router.route("/")
       if (error) return res.status(500).send(error.message);
       if (!user) return res.status(400).send();
 
-      var token = jwt.sign(user._doc, "dkstncks");
+      var token = jwt.sign(user._doc, require("../../config").jwtSecret);
       console.log(token);
       // user => token ... ( jwt )
       return res.status(200).json({token: token});
@@ -43,7 +43,7 @@ function apiLoginRequired() {
     // Authorization: JWT ______________________; _____
 
     if (!token) return res.status(401).send("token required");
-    jwt.verify(token, "dkstncks", function(error, decoded) {
+    jwt.verify(token, require("../../config").jwtSecret, function(error, decoded) {
       if (error) return res.status(400).send(error.message);
       next();
     });

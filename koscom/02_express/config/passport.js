@@ -27,7 +27,7 @@ module.exports = function(passport) {
   // verify, apiLoginRequired
   passport.use( new passportJwtStrategy(
     {
-      secretOrKey: "dkstncks",
+      secretOrKey: require("../config").jwtSecret,
       jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme("Bearer")
     },
     function(user, callback) {
