@@ -3,6 +3,7 @@ var router = express.Router();
 
 var jwt = require("jsonwebtoken");
 var User = require("../../models/user");
+var passport = require("passport");
 
 
 // POST "/api/auth/" ( username, password ) => {"token" ____}
@@ -52,7 +53,7 @@ function apiLoginRequired() {
 
 router.route("/secret/")
   .get(
-    apiLoginRequired(),
+    passport.authenticate("jwt"),
     function(req, res, next) {
       return res.send("very secret info");
     }
