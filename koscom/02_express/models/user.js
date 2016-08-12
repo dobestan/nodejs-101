@@ -18,6 +18,7 @@ var userSchema = new mongoose.Schema({
   facebookId: String,
   kakaoId: String,
 
+  // comments: [commentSchema]
   posts: [  {type: mongoose.Schema.Types.ObjectId, ref: "Post"}  ]
 });
 
