@@ -16,7 +16,9 @@ var userSchema = new mongoose.Schema({
   updated_at: Date,
 
   facebookId: String,
-  kakaoId: String
+  kakaoId: String,
+
+  posts: [  {type: mongoose.Schema.Types.ObjectId, ref: "Post"}  ]
 });
 
 

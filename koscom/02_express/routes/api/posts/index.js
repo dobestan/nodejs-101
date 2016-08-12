@@ -19,11 +19,10 @@ router.param("postId", function(req, res, next, postId) {
 router.route("/")
 
   .get(function(req, res, next) {
-    Post.find({}, function(error, posts) {
-      if (error) return next(error); // error handling mid
-
+    Post.find({}).populate("_owner").exec(function(error, posts) {
+      if (error) return res.status(500).send(error.message);
       return res.json(posts);
-    });
+    })
   })
 
   .post(
@@ -40,7 +39,10 @@ router.route("/")
 
       post.save(function(error, post) {
         // 201 CREATED
-        return res.status(201).send("Successfully created");
+        req.user.posts.push(post);
+        req.user.save(function(error, user) {
+          return res.status(201).send("Successfully created");
+        });
       });
     }
   );
