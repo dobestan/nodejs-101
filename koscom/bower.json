@@ -1,0 +1,21 @@
+{
+  "name": "koscom",
+  "main": "koscom.js",
+  "homepage": "https://github.com/dobestan/nodejs-101",
+  "authors": [
+    "Suchan An <me@ansuchan.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "socket.io": "^1.4.8"
+  }
+}

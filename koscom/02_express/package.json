@@ -17,6 +17,7 @@
     "csurf": "^1.9.0",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
+    "gulp-jshint": "^2.0.1",
     "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
@@ -25,5 +26,10 @@
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta4",
     "request": "^2.74.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-watch": "^4.3.9"
   }
 }
