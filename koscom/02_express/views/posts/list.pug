@@ -5,8 +5,9 @@ block content
     h1 Posts List
     a(href="/posts/new/") New Post
 
-    ul
-        each post in posts
-            li
-                h2= post.title
-                p= post.content
+    ul#posts
+
+    form#posts-form
+        input(type="text" name="title")
+        input(type="text" name="content")
+        input(type="submit" value="publish")

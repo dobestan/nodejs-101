@@ -26,7 +26,7 @@ router.route("/")
   })
 
   .post(
-    passport.authenticate("jwt"),
+    // passport.authenticate("jwt"),
     function(req, res, next) {
       var title = req.body.title;
       var content = req.body.content;
@@ -34,15 +34,15 @@ router.route("/")
       var post = new Post({
         title: title,
         content: content,
-        _owner: req.user._id
+        // _owner: req.user._id
       });
 
       post.save(function(error, post) {
         // 201 CREATED
-        req.user.posts.push(post);
-        req.user.save(function(error, user) {
-          return res.status(201).send("Successfully created");
-        });
+        // req.user.posts.push(post);
+        // req.user.save(function(error, user) {
+        return res.status(201).send("Successfully created");
+        // });
       });
     }
   );

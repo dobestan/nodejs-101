@@ -25,7 +25,8 @@
     "passport-jwt": "^2.1.0",
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta4",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

@@ -18,11 +18,19 @@ var apiRouter = require("./routes/api"); // api/index.js
 var postsRouter = require("./routes/posts"); // api/index.js
 var flashRouter = require("./routes/flash");
 var authRouter = require("./routes/auth");
+var chatRouter = require("./routes/chat");
 
 var methodMiddleware = require("./middlewares/method");
 
 
+var socketio = require("socket.io");
+var http = require("http");
+
+
 var app = express();
+var httpServer = http.Server(app);
+var io = socketio(httpServer);
+// app.listen => httpServer.listen
 
 
 mongoose.connect("mongodb://mongodb.dobest.io/suchan");
@@ -103,6 +111,7 @@ app.use("/posts/", postsRouter);
 app.use("/api/", apiRouter);
 app.use("/flash/", flashRouter);
 app.use("/", authRouter);
+app.use("/chat/", chatRouter);
 
 
 // Error Handling Middleware
@@ -116,6 +125,26 @@ app.use(function(error, req, res, next) {
 // next(error); ===> function(error, req, res, next);
 
 
-app.listen(3000, function() {
+io.on("connect", function(socket) {
+  console.log("Socket is connected: " + socket.id);
+
+  // DB
+  var rooms = ["dog", "cat", "bird"];
+  io.emit("setup", rooms); // emit: 상대방에게 이벤트를 전달
+                           // on: 상대방으로 부터 이벤트를 받음
+  socket.on("chat", function(chat) {
+    console.log("Chat Message Received: " + chat.content);
+    console.log("Chat Message Sent: " + chat.content);
+    io.emit("chat", chat);
+  });
+
+  socket.on("disconnect", function() {
+    console.log("Socket is disconnected");
+  });
+});
+
+
+
+httpServer.listen(3000, function() {
   console.log("Server is listening");
 });
