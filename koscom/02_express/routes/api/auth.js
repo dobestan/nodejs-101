@@ -34,4 +34,29 @@ router.route("/verify/")
     });
   });
 
+
+function apiLoginRequired() {
+  return function(req, res, next) {
+    var token = req.body.token || req.query.token || req.headers["x-access-token"];
+    // Authorization: Bearer ______________________; ______
+    // Authorization: JWT ______________________; _____
+
+    if (!token) return res.status(401).send("token required");
+    jwt.verify(token, "dkstncks", function(error, decoded) {
+      if (error) return res.status(400).send(error.message);
+      next();
+    });
+  }
+}
+
+
+router.route("/secret/")
+  .get(
+    apiLoginRequired(),
+    function(req, res, next) {
+      return res.send("very secret info");
+    }
+  );
+
+
 module.exports = router;
