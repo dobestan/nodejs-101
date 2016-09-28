@@ -19,6 +19,7 @@ var postsRouter = require("./routes/posts"); // api/index.js
 var flashRouter = require("./routes/flash");
 var authRouter = require("./routes/auth");
 var chatRouter = require("./routes/chat");
+var noticeRouter = require("./routes/notice");
 
 var methodMiddleware = require("./middlewares/method");
 
@@ -101,6 +102,12 @@ app.use( function(req, res, next) {
 });
 
 
+app.use( function(req, res, next) {
+  req.io = io;
+  next();
+});
+
+
 // Routers
 app.use("/", homeRouter);
 app.use("/zigbang/", zigbangRouter);
@@ -112,6 +119,7 @@ app.use("/api/", apiRouter);
 app.use("/flash/", flashRouter);
 app.use("/", authRouter);
 app.use("/chat/", chatRouter);
+app.use("/notice/", noticeRouter);
 
 
 // Error Handling Middleware
@@ -132,6 +140,12 @@ io.on("connect", function(socket) {
   var rooms = ["dog", "cat", "bird"];
   io.emit("setup", rooms); // emit: 상대방에게 이벤트를 전달
                            // on: 상대방으로 부터 이벤트를 받음
+
+  socket.on("newUser", function(username) {
+    console.log("New User Joined: " + username);
+    io.emit("newUser", username);
+  });
+
   socket.on("chat", function(chat) {
     console.log("Chat Message Received: " + chat.content);
     console.log("Chat Message Sent: " + chat.content);
