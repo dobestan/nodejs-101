@@ -17,6 +17,10 @@ var app = http.createServer(function(req, res) {
   if (req.url.indexOf("/csv/") == 0) {
     require("./controllers/csv")(req, res);
   }
+
+  if (req.url.indexOf("/rooms/") == 0) {
+    require("./controllers/rooms")(req, res);
+  }
 });
 
 
