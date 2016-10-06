@@ -1,4 +1,9 @@
+var renderer = require("../renderer");
+
+
 module.exports = function(req, res) {
-  res.write("about");
+  var content = renderer("about");
+
+  res.write(content);
   res.end();
 }
