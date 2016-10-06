@@ -15,11 +15,7 @@ var app = http.createServer(function(req, res) {
   }
 
   if (req.url.indexOf("/csv/") == 0) {
-    var filename = req.url.replace("/csv/", "").replace("/", "") + ".csv";
-    // URL Parameter Parsing
-
-    res.write(filename);
-    res.end();
+    require("./controllers/csv")(req, res);
   }
 });
 
