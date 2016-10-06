@@ -1,4 +1,10 @@
+var path = require("path");
+var fs = require("fs");
+
+
 module.exports = function(req, res) {
-  res.write("home");
+  var templateFilePath = path.join(__dirname, "..", "templates", "home.html");
+
+  res.write(templateFilePath);
   res.end();
 }
