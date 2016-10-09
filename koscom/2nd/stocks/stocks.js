@@ -29,9 +29,13 @@ request(requestOptions, function(error, response, body) {
   var className = $(".no_today").find("em").attr("class");
   var isUp = className == "no_up" ? true : false;
 
-  // 종목 상승률/하락률 크롤링
-  var stockPrice = $("#chart_area .rate_info .no_exday em").eq(0).find(".blind").text();
+  // 종목 가격 정보
+  var stockPrice = $(".no_today em .blind").html();
   stockPrice = Number(stockPrice.replace(/,/gi, ""));
+
+  // 종목 상승률/하락률 크롤링
+  var stockChangePrice = $("#chart_area .rate_info .no_exday em").eq(0).find(".blind").text();
+  stockChangePrice = Number(stockChangePrice.replace(/,/gi, ""));
 
   var stockChangeRate = $("#chart_area .rate_info .no_exday em").eq(1).find(".blind").text();
   stockChangeRate = Number(stockChangeRate);
@@ -39,5 +43,6 @@ request(requestOptions, function(error, response, body) {
   console.log(stockName);
   console.log(isUp);
   console.log(stockPrice);
+  console.log(stockChangePrice);
   console.log(stockChangeRate);
 });
