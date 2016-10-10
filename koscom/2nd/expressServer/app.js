@@ -15,6 +15,11 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "templates"));
 
 
+// Middlewares - express, 3rd party, custom
+
+// http://localhost:3000/static/js/application.js
+app.use("/static", express.static(path.join(__dirname, "public")));
+
 var logger = function(req, res, next) {
   console.log("Request on", req.url, "at", new Date());
   next();
