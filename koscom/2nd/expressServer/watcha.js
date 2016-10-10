@@ -1,13 +1,17 @@
-// var http = require("https");
 var request = require("request");
 
 
-var url = "https://watcha.net/home/news.json?page=1&per=5";
+module.exports = function (page, per, callback) {
+  var url = "https://watcha.net/home/news.json?page=1&per=5";
 
-request(url, function(error, response, body) {
-  var data = JSON.parse(body);
-  console.log(data);
-});
+  request(url, function(error, response, body) {
+    if (error) return callback(error, null);
+    var data = JSON.parse(body);
+    return callback(null, data);
+  });
+
+  return undefined;
+}
 
 
 // http.get(url, function(response) {
