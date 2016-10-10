@@ -8,9 +8,6 @@ router.get("/", function(request, response, next) {
 
 
 router.post("/notice/", function(request, response, next) {
-  var message = request.body.message;
-  request.io.emit("notice", message);
-  return response.status(201).send();
 });
 
 
