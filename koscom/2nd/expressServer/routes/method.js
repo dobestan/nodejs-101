@@ -2,6 +2,9 @@ var express = require("express");
 var router = express.Router();
 
 
+var loginRequired = require("../middlewares/auth").loginRequired;
+
+
 router.route("/")
   .all(function(req, res, next) {
     console.log("hello HTTP Method");
@@ -10,7 +13,7 @@ router.route("/")
   .get(function(req, res, next) {
     return res.json(req.query);
   })
-  .post(function(req, res, next) {
+  .post(loginRequired(), function(req, res, next) {
     return res.json(req.body);
   })
   .patch(function(req, res, next) {
