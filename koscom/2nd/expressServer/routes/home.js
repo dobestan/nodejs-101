@@ -3,7 +3,11 @@ var router = express.Router();
 
 
 router.get("/", function(req, res, next) {
-  return res.render("home", {name: "Suchan An"});
+  var context = {
+    name: "Suchan An",
+    animals: ["강아지", "고양이", "물고기", "새"]
+  };
+  return res.render("home", context);
 });
 
 
