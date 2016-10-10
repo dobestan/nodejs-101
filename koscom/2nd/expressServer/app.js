@@ -31,6 +31,17 @@ app.use("/method", methodRouter);
 app.use("/movies", moviesRouter);
 
 
+// Error Handling Middleware
+app.use(function(err, req, res, next) {
+  console.log(err);
+  return res.render("error");
+
+  // 강제로 에러 발생
+  // var error = new Error("This is my error");
+  // return next(error);
+});
+
+
 app.listen(3000, function() {
   console.log("Server is running");
 });
