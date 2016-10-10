@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
 var methodRouter = require("./routes/method"); // router
+var moviesRouter = require("./routes/movies"); // router
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use("/", homeRouter);
 app.use("/about", aboutRouter);
 app.use("/method", methodRouter);
+app.use("/movies", moviesRouter);
 
 
 app.listen(3000, function() {

@@ -1,0 +1,12 @@
+extends ./base
+
+
+block content
+    h1 Movies
+
+    ul
+        div
+            each movieElement in movieElements
+                img(src=movieElement.image width="400px" height="300px")
+                h2 #{movieElement.title}
+                p #{movieElement.content}
