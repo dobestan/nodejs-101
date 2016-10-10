@@ -4,6 +4,12 @@ extends ./base
 block content
     h1 Movies
 
+    p 총 #{movieElements.length} 개의 영화 정보가 있습니다.
+
+    form(action="/movies" method="GET")
+        input(type="text" name="search" placeholder="검색어" value=search required)
+        input(type="submit" value="검색")
+
     ul
         div
             each movieElement in movieElements
