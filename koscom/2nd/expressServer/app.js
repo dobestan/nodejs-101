@@ -3,6 +3,7 @@ var express = require("express");   // http.createServer
 
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
+var methodRouter = require("./routes/method"); // router
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(logger);
 
 app.use("/", homeRouter);
 app.use("/about", aboutRouter);
+app.use("/method", methodRouter);
 
 
 app.listen(3000, function() {
