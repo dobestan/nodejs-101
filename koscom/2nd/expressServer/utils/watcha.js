@@ -9,8 +9,6 @@ module.exports = function (page, per, callback) {
     var data = JSON.parse(body);
     return callback(null, data);
   });
-
-  return undefined;
 }
 
 
