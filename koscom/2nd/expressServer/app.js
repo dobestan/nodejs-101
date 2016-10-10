@@ -1,5 +1,6 @@
 var path = require("path");
 var express = require("express");   // http.createServer
+var bodyParser = require("body-parser");
 
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
@@ -18,6 +19,9 @@ var logger = function(req, res, next) {
   next();
 }
 app.use(logger);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use("/", homeRouter);

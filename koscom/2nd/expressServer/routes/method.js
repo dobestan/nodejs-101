@@ -11,8 +11,11 @@ router.get("/", function(req, res, next) {
 
 
 router.post("/", function(req, res, next) {
-  return res.send("POST");
+  return res.json(req.body);
 });
+
+
+
 
 
 module.exports = router;
