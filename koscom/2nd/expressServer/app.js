@@ -6,6 +6,11 @@ var aboutRouter = require("./routes/about"); // router
 var app = express();
 
 
+// Settings
+app.set("view engine", "pug");
+app.set("views", "./templates/");
+
+
 var logger = function(req, res, next) {
   console.log("Request on", req.url, "at", new Date());
   next();
