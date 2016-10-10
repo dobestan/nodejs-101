@@ -6,6 +6,7 @@ var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
 var methodRouter = require("./routes/method"); // router
 var moviesRouter = require("./routes/movies"); // router
+var roomsRouter = require("./routes/rooms"); // router
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use("/", homeRouter);
 app.use("/about", aboutRouter);
 app.use("/method", methodRouter);
 app.use("/movies", moviesRouter);
+app.use("/rooms", roomsRouter);
 
 
 // Error Handling Middleware
