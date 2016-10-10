@@ -1,3 +1,4 @@
+var path = require("path");
 var express = require("express");   // http.createServer
 
 var homeRouter = require("./routes/home"); // router
@@ -8,7 +9,7 @@ var app = express();
 
 // Settings
 app.set("view engine", "pug");
-app.set("views", "./templates/");
+app.set("views", path.join(__dirname, "templates"));
 
 
 var logger = function(req, res, next) {

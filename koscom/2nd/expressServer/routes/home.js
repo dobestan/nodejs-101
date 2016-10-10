@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 router.get("/", function(req, res, next) {
-  return res.render("home");
+  return res.render("home", {name: "Suchan An"});
 });
 
 
