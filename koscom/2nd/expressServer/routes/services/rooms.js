@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-var zigbang = require("../utils/zigbang");
+var zigbang = require("../../utils/zigbang");
 
 
 router.get("/:roomId", function(req, res, next) {

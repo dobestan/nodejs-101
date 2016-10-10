@@ -5,8 +5,7 @@ var bodyParser = require("body-parser");
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
 var methodRouter = require("./routes/method"); // router
-var moviesRouter = require("./routes/movies"); // router
-var roomsRouter = require("./routes/rooms"); // router
+var servicesRouter = require("./routes/services");
 
 var app = express();
 
@@ -34,8 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use("/", homeRouter);
 app.use("/about", aboutRouter);
 app.use("/method", methodRouter);
-app.use("/movies", moviesRouter);
-app.use("/rooms", roomsRouter);
+app.use("/", servicesRouter);
 
 
 // Error Handling Middleware
