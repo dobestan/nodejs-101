@@ -38,6 +38,7 @@ router.route("/login")
 
 router.route("/logout")
   .get(function(req, res, next) {
+    delete req.session.user;
     req.flash("success", "성공적으로 로그아웃 되었습니다.");
     return res.redirect("/");
   })
