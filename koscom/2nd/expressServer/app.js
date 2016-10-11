@@ -46,6 +46,13 @@ var logger = function(req, res, next) {
 }
 app.use(logger);
 
+
+app.use(function(req, res, next) {
+  res.locals.username = "dobestan";
+  next();
+});
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
