@@ -5,6 +5,8 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var flash = require("express-flash");
+var connectFlash = require("connect-flash");
+var messages = require("express-messages");
 
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
@@ -33,10 +35,11 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
-app.use(flash());  // req.flash("key", "value"); // setter
+// app.use(flash());  // req.flash("key", "value"); // setter
                    // req.flash("key")           // getter
 //                 // req.flash()                // getter
 // 1. flash message add, 2. flash message consume
+app.use(connectFlash());  // express-messages 와 같이 사용하기 위해서
 
 
 // My Middlewares
@@ -49,6 +52,11 @@ app.use(logger);
 
 app.use(function(req, res, next) {
   res.locals.username = "dobestan";
+
+  req.flash("success", "회원가입이 성공적으로 되었습니다.");
+  req.flash("error", "비밀번호가 올바르지 않습니다.");
+
+  res.locals.messages = messages(req, res);
   next();
 });
 

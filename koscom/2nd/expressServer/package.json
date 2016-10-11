@@ -11,9 +11,11 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "cheerio": "^0.22.0",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-flash": "0.0.2",
+    "express-messages": "^1.0.1",
     "express-session": "^1.14.1",
     "pug": "^2.0.0-beta6",
     "request": "^2.75.0"
