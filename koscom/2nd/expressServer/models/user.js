@@ -38,6 +38,23 @@ userSchema.pre("save", function(next) {
 });
 
 
+userSchema.statics.authenticate = function (username, password, callback) {  // function (error, user)
+  User.findOne({username: username}, function(error, user) {
+    if (error) { return callback(error) };
+    if (!user) {
+      var error = new Error("유저 정보가 없습니다.");
+      return callback(error);
+    }
+    if (bcrypt.compareSync(password, user.password)) {
+      return callback(error, user);
+    } else {
+      var error = new Error("유저 정보가 없습니다.");
+      return callback(error);
+    }
+  });
+}
+
+
 // userSchema.post("save", function(user) {
 //   require("../utils/sms")("01022205736", "01022205736", "[회원가입]", function(error, data) {
 //     console.log(data);

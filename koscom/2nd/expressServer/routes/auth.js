@@ -36,16 +36,14 @@ router.route("/login")
     var username = req.body.username;
     var password = req.body.password;
 
-    User.findOne({username: username}, function(error, user) {
-      if (error) return next(error);
-
-      if (bcrypt.compareSync(password, user.password)) {
+    User.authenticate(username, password, function(error, user) {
+      if (error) {
+        req.flash("error", error.message);
+        return res.redirect("/login");
+      } else {
         req.session.user = user;
         req.flash("success", "성공적으로 로그인 되었습니다.");
         return res.redirect(next);
-      } else {
-        req.flash("error", "계정 정보가 잘못되었습니다.");
-        return res.redirect("/login");
       }
     });
 
