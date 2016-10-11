@@ -5,6 +5,8 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+var bcrypt = require("bcryptjs");
+
 
 var userSchema = new Schema({
   username: {
@@ -28,9 +30,10 @@ userSchema.pre("save", function(next) {
 
 userSchema.pre("save", function(next) {
   var user = this;
-  user.password = user.password + "hashed!!";
-  // user.createdAt = user.createdAt || new Date();
-  // user.updatedAt = new Date();
+
+  var salt = bcrypt.genSaltSync(10);
+  user.password = bcrypt.hashSync(user.password, salt);
+
   next();
 });
 
