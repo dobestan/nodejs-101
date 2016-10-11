@@ -1,14 +1,26 @@
 var express = require("express");
 var router = express.Router();
 
+var User = require("../models/user");
+
 
 router.route("/signup")
   .get(function(req, res, next) {
     return res.render("auth/signup");
   })
   .post(function(req, res, next) {
-    req.flash("success", "성공적으로 회원가입 되었습니다.");
-    return res.redirect("/");
+    var user = new User({
+      username: req.body.username,
+      password: req.body.password,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    user.save(function(error) {
+      if (error) next(error);
+      req.flash("success", "성공적으로 회원가입 되었습니다.");
+      return res.redirect("/");
+    });
   })
 
 
