@@ -13,6 +13,7 @@ var aboutRouter = require("./routes/about"); // router
 var methodRouter = require("./routes/method"); // router
 var servicesRouter = require("./routes/services");
 var flashRouter = require("./routes/flash");
+var authRouter = require("./routes/auth");
 
 var app = express();
 
@@ -70,6 +71,7 @@ app.use("/about", aboutRouter);
 app.use("/method", methodRouter);
 app.use("/", servicesRouter);
 app.use("/flash", flashRouter);
+app.use("/", authRouter);
 
 
 // Error Handling Middleware
