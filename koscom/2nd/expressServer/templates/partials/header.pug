@@ -1,11 +1,12 @@
 header
     h1 Header
-    p Welcome, #{username}.
 
     ul
-        li
-            a(href="/signup") 회원가입
-        li
-            a(href="/login") 로그인
-        li
-            a(href="/logout") 로그아웃
+        if user
+            li
+                a(href="/logout") 로그아웃
+        if !user
+            li
+                a(href="/signup") 회원가입
+            li
+                a(href="/login") 로그인

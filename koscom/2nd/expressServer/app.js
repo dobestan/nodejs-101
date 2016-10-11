@@ -52,7 +52,12 @@ app.use(logger);
 
 
 app.use(function(req, res, next) {
-  res.locals.username = "dobestan";
+  res.locals.user = req.session.user;
+  next();
+});
+
+app.use(function(req, res, next) {
+  // res.locals.username = "dobestan";
 
   // req.flash("success", "회원가입이 성공적으로 되었습니다.");
   // req.flash("error", "비밀번호가 올바르지 않습니다.");
