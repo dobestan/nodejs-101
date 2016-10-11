@@ -1,11 +1,11 @@
 function loginRequired() {
   return function (req, res, next) {
-    var isLogin = false;
-    if (isLogin) {
+    if (req.session.user) {
       next();
+    } else {
+      req.flash("error", "로그인이 필요한 페이지입니다.");
+      return res.redirect("/login");
     }
-
-    return res.status(403).send("Login Required");
   }
 }
 
