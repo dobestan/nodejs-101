@@ -12,8 +12,8 @@ router.route("/signup")
     var user = new User({
       username: req.body.username,
       password: req.body.password,
-      createdAt: new Date(),
-      updatedAt: new Date()
+      // createdAt: new Date(),
+      // updatedAt: new Date()
     });
 
     user.save(function(error) {
