@@ -8,6 +8,8 @@ var session = require("express-session");
 var connectFlash = require("connect-flash");
 var messages = require("express-messages");
 
+var mongoose = require("mongoose");
+
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
 var methodRouter = require("./routes/method"); // router
@@ -16,6 +18,13 @@ var flashRouter = require("./routes/flash");
 var authRouter = require("./routes/auth");
 
 var app = express();
+
+mongoose.connect("mongodb://mongodb.dobest.io/dobestan_koscom");
+var db = mongoose.connection;
+
+db.once("open", function() {
+  console.log("Database is connected");
+});
 
 
 // Settings

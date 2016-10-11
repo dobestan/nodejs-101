@@ -17,6 +17,7 @@
     "express-flash": "0.0.2",
     "express-messages": "^1.0.1",
     "express-session": "^1.14.1",
+    "mongoose": "^4.6.3",
     "pug": "^2.0.0-beta6",
     "request": "^2.75.0"
   }
