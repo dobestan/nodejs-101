@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
+var bcrypt = require("bcryptjs");
 var User = require("../models/user");
 
 
@@ -31,23 +32,31 @@ router.route("/login")
     return res.render("auth/login", context);
   })
   .post(function(req, res, next) {
-    var username = "admin";
-    var password = "1234";
-    var user = {
-      username: username,
-      password: password,
-      email: "admin@naver.com"
-    };
     var next = req.body.next || "/";
+    var username = req.body.username;
+    var password = req.body.password;
 
-    if (req.body.username === username && req.body.password === password) {
-      req.session.user = user;
-      req.flash("success", "성공적으로 로그인 되었습니다.");
-      return res.redirect(next);
-    } else {
-      req.flash("error", "계정 정보가 잘못되었습니다.");
-      return res.redirect("/login");
-    }
+    User.findOne({username: username}, function(error, user) {
+      if (error) return next(error);
+
+      if (bcrypt.compareSync(password, user.password)) {
+        req.session.user = user;
+        req.flash("success", "성공적으로 로그인 되었습니다.");
+        return res.redirect(next);
+      } else {
+        req.flash("error", "계정 정보가 잘못되었습니다.");
+        return res.redirect("/login");
+      }
+    });
+
+    // if (req.body.username === username && req.body.password === password) {
+    //   req.session.user = user;
+    //   req.flash("success", "성공적으로 로그인 되었습니다.");
+    //   return res.redirect(next);
+    // } else {
+    //   req.flash("error", "계정 정보가 잘못되었습니다.");
+    //   return res.redirect("/login");
+    // }
   })
 
 
