@@ -31,7 +31,7 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 // Cookie, Session
 app.use(cookieParser());  // cookieParser() == function(req, res, next){...}
 app.use(session({
-  secret: "node.js",
+  secret: require("./config/auth").sessionSecret,
   resave: true,
   saveUninitialized: true
 }));
