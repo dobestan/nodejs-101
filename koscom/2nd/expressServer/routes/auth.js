@@ -14,7 +14,9 @@ router.route("/signup")
 
 router.route("/login")
   .get(function(req, res, next) {
-    return res.render("auth/login");
+    var next = req.query.next;
+    var context = {next: next};
+    return res.render("auth/login", context);
   })
   .post(function(req, res, next) {
     var username = "admin";
@@ -24,11 +26,12 @@ router.route("/login")
       password: password,
       email: "admin@naver.com"
     };
+    var next = req.body.next || "/";
 
     if (req.body.username === username && req.body.password === password) {
       req.session.user = user;
       req.flash("success", "성공적으로 로그인 되었습니다.");
-      return res.redirect("/");
+      return res.redirect(next);
     } else {
       req.flash("error", "계정 정보가 잘못되었습니다.");
       return res.redirect("/login");

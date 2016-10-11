@@ -5,6 +5,7 @@ block content
     h1 로그인
 
     form(action="/login/" method="POST")
+        input(type="text" name="next" value=next)
         input(type="text" name="username" placeholder="Username" required)
         input(type="password" name="password" placeholder="Password" required)
         input(type="submit" value="로그인")
