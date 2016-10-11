@@ -14,9 +14,9 @@ module.exports = function(sender, receiver, content, callback) {
       "x-waple-authorization": "MTkyMC0xNDEzODU0NTAwMzU3LTllM2VkOTM3LTYwMTEtNGU2Zi1iZWQ5LTM3NjAxMTNlNmYyMg==",
     },
     form: {
-      "send_phone": "01022205736",
-      "dest_phone": "01022205736",
-      "msg_body": "hello world"
+      "send_phone": sender,
+      "dest_phone": receiver,
+      "msg_body": content
     }
   };
 
