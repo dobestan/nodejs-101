@@ -5,3 +5,11 @@ header {
 footer {
   background-color: green;
 }
+
+ul.success li {
+  color: green;
+}
+
+ul.error li {
+  color: red;
+}

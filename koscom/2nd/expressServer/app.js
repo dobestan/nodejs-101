@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
-var flash = require("express-flash");
+// var flash = require("express-flash");
 var connectFlash = require("connect-flash");
 var messages = require("express-messages");
 
@@ -53,8 +53,8 @@ app.use(logger);
 app.use(function(req, res, next) {
   res.locals.username = "dobestan";
 
-  req.flash("success", "회원가입이 성공적으로 되었습니다.");
-  req.flash("error", "비밀번호가 올바르지 않습니다.");
+  // req.flash("success", "회원가입이 성공적으로 되었습니다.");
+  // req.flash("error", "비밀번호가 올바르지 않습니다.");
 
   res.locals.messages = messages(req, res);
   next();
