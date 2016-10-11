@@ -70,7 +70,7 @@ router.route("/mypage")
   .get(
     require("../middlewares/auth").loginRequired(),
     function(req, res, next) {
-      return res.send("This is my page");
+      return res.render("mypage", {profile: req.session.user});
     }
   );
 

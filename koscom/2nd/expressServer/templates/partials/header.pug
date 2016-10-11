@@ -4,6 +4,8 @@ header
     ul
         if user
             li
+                a(href="/mypage") #{user.username}
+            li
                 a(href="/logout") 로그아웃
         if !user
             li

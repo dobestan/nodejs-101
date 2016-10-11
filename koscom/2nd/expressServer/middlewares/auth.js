@@ -6,7 +6,6 @@
 // 3. login GET template 에서 hidden field 로 next field 만들기
 // 4. login POST 부분에서 next 인자를 받아서 redirect
 
-
 function loginRequired() {
   return function (req, res, next) {
     if (req.session.user) {
