@@ -1,12 +1,27 @@
 (function() {
   $(document).ready(function() {
     var postsElement = $("#posts");
+    var url = "/api/posts/";
+
+    // 1. 주체: Client ( 쪽지가 왔습니다!, Push! )
+    //    - Client 1s => Server> "push"?, "note"?
+    // 2. Connection: 1회성으로 연결(HTTP Request)
+    // ==============================================
+    // Web Socket
+
+    $.ajax({
+      url: url,
+      type: "GET",
+      success: function(posts) {
+        posts.forEach(function(post) {
+          $(postsElement).append("<li>" + post.title + "</li>");
+        });
+      }
+    });
 
     var formElement = $("form");
     var titleElement = $(formElement).find("input[name='title']");
     var contentElement = $(formElement).find("input[name='content']");
-
-    var url = "/api/posts/";
 
     formElement.submit(function() {
       var title = $(titleElement).val(); // jQuery Function => getter, setter

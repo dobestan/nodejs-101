@@ -12,6 +12,11 @@ var mongoose = require("mongoose");
 
 var passport = require("passport");
 
+
+var socketio = require("socket.io");
+var http = require("http");
+
+
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
 var methodRouter = require("./routes/method"); // router
@@ -22,6 +27,9 @@ var apiRouter = require("./routes/api"); // api/index.js
 var postsRouter = require("./routes/posts"); // api/index.js
 
 var app = express();
+var httpServer = http.Server(app);
+var io = socketio(httpServer);
+
 
 mongoose.connect("mongodb://mongodb.dobest.io/dobestan_koscom");
 var db = mongoose.connection;
@@ -112,6 +120,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.listen(3000, function() {
+httpServer.listen(3000, function() {
   console.log("Server is running");
 });
