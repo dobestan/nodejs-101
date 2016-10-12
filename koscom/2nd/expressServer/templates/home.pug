@@ -6,6 +6,10 @@ block content
     p This is home.
     p Welcome, #{name}.
 
-    ol
-        each animal in animals 
-            li #{animal}
+    h2 Chat
+    ul#chat
+        li === Start of Chat ===
+
+    form()
+        input(type="text" name="content" placeholder="Chat Message" required)
+        input(type="submit" value="chat")

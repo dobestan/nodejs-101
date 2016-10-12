@@ -131,6 +131,12 @@ io.on("connect", function(socket) {
     io.emit("enter", username);
   });
 
+  socket.on("chat", function(data) {
+    console.log(data.username + ": " + data.content);
+    // 채팅 기록을 DB에 저장
+    io.emit("chat", data);
+  });
+
   socket.on("disconnect", function() {
     console.log("Socket is disconnected: ", this.id);
   });
