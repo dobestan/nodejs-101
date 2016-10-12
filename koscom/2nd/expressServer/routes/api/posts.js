@@ -19,6 +19,7 @@ router.route("/")
 
     post.save(function(error) {
       if (error) return res.json(error);
+      req.io.emit("notice", "신규 포스트가 등록되었습니다: " + post.title);
       return res.status(201).send("Successfully created");
     });
   });

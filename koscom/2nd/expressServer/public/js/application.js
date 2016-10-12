@@ -37,7 +37,9 @@
       newChat(username + "님이 채팅방에 참여했습니다.");
     });
 
-
+    socket.on("notice", function(message) {
+      alert("[공지] " + message);
+    })
 
 
 

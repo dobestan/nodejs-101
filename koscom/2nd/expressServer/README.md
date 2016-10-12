@@ -59,3 +59,127 @@ $ git pull origin master   # 원격 저장소의 파일 불러오기
 
     GET /api/verify/  {token: JWT Token} => Verify O, Data O
     GET /api/secret/ 
+
+    ---------------------------------------------------------
+
+# 객체 지향 자바스크립트 ( Class X, Prototype O )
+    - Block Level Scope ( Function Level Scope )
+    - 1. Function Literal ( Declared Function )
+    - 2. Function Expression
+    - 3. Constructor
+
+    - Prototype => prototype object, prototype link ( [[Prototype]], __proto__ )
+
+    - Functional Programming - map, filter, reduce
+
+    ----------------------------------------------------------
+
+    HTML, CSS, Web Client Javascript ( DOM )
+
+    ----------------------------------------------------------
+
+    Node.js => 언어? 프레임워크? 라이브러리? (X)
+                => V8 위에서 자바스크립트를 실행할 수 있는 환경
+                => (2008) => (2009)
+
+    ------------------------------------------------------------
+
+    fs => fs.readFile(callback), fs.readFileSync    <=> Refactoring 
+    read_csv
+
+    --------------------------------------------------------------
+
+    Node.js -> router, renderer(html rendering, context rendering)
+
+    ----------------------------------------------------------------
+
+    Express.js => Middleware ( req => res )
+
+    - router
+    - renderer + template engine ( pug )
+    - MVC ( Model, View, Controller )
+
+    ------------------------------------------------------------------
+
+    MongoDB(ODM; mongoose) - Signup, Login
+
+    - HTTP is stateless ( 웹/API )
+    - Authenticate
+        - Local Authentication
+        - OAuth2
+        - JWT(JSON Web Token): Authorization: Bearer/JWT ______________
+    - Passport ( Auth Middleware ) - passport-local, passport-facebook, passport-jwt
+
+    ------------------------------------------------------
+
+    Web Socket
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
