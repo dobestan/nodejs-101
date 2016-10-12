@@ -127,6 +127,8 @@ io.on("connect", function(socket) {
   console.log("Socket is connected: " + socket.id);
 });
 
+// var socket = io();
+
 
 
 
