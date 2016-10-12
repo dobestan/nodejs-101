@@ -46,7 +46,7 @@ router.get("/auth/facebook", passport.authenticate("facebook"));
 router.get("/auth/facebook/callback",
   passport.authenticate("facebook"),
   function(req, res, next) {
-    req.flash("success", "페이스북 회원가입이 완료되었습니다.");
+    req.flash("success", "페이스북 로그인이 완료되었습니다.");
     return res.redirect("/");
   }
 );
