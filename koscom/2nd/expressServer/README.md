@@ -59,16 +59,3 @@ $ git pull origin master   # 원격 저장소의 파일 불러오기
 
     GET /api/verify/  {token: JWT Token} => Verify O, Data O
     GET /api/secret/ 
-
-
-
-
-
-
-
-
-
-
-
-
-
