@@ -16,6 +16,7 @@ var methodRouter = require("./routes/method"); // router
 var servicesRouter = require("./routes/services");
 var flashRouter = require("./routes/flash");
 var authRouter = require("./routes/auth");
+var apiRouter = require("./routes/api"); // api/index.js
 
 var app = express();
 
@@ -86,6 +87,7 @@ app.use("/method", methodRouter);
 app.use("/", servicesRouter);
 app.use("/flash", flashRouter);
 app.use("/", authRouter);
+app.use("/api", apiRouter);
 
 
 // Error Handling Middleware
