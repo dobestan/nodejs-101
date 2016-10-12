@@ -38,6 +38,20 @@ userSchema.pre("save", function(next) {
 });
 
 
+userSchema.statics.serialize = function() {
+  return function(user, callback) {
+    return callback(null, user._id);
+  }
+}
+
+userSchema.statics.deserialize = function() {
+  return function(id, callback) {
+    User.findOne({_id: id}, function(error, user) {
+      return callback(error, user);
+    });
+  }
+}
+
 userSchema.statics.authenticate = function (username, password, callback) {  // function (error, user)
   User.findOne({username: username}, function(error, user) {
     if (error) { return callback(error) };

@@ -59,16 +59,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-passport.serializeUser(function(user, callback) {
-  return callback(null, user._id);
-});
-
 var User = require("./models/user");
-passport.deserializeUser(function(id, callback) {
-  User.findOne({_id: id}, function(error, user) {
-    return callback(error, user);
-  });
-});
+passport.serializeUser(User.serialize());
+passport.deserializeUser(User.deserialize());
 
 
 // My Middlewares
