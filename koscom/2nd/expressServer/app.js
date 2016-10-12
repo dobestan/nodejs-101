@@ -120,6 +120,18 @@ app.use(function(err, req, res, next) {
 });
 
 
+// io => server
+// socket => client
+
+io.on("connect", function(socket) {
+  console.log("Socket is connected: " + socket.id);
+});
+
+
+
+
+
+
 httpServer.listen(3000, function() {
   console.log("Server is running");
 });
