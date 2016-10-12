@@ -71,7 +71,7 @@ app.use(logger);
 
 
 app.use(function(req, res, next) {
-  res.locals.user = req.session.user;
+  res.locals.user = req.user;  // req.user
   next();
 });
 

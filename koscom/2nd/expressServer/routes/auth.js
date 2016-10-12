@@ -4,6 +4,8 @@ var router = express.Router();
 var bcrypt = require("bcryptjs");
 var User = require("../models/user");
 
+var passport = require("passport");
+
 
 router.route("/signup")
   .get(function(req, res, next) {
@@ -31,21 +33,13 @@ router.route("/login")
     var context = {next: next};
     return res.render("auth/login", context);
   })
-  .post(function(req, res, next) {
-    var next = req.body.next || "/";
-    var username = req.body.username;
-    var password = req.body.password;
-
-    User.authenticate(username, password, function(error, user) {
-      if (error) {
-        req.flash("error", error.message);
-        return res.redirect("/login");
-      } else {
-        req.session.user = user;
-        req.flash("success", "성공적으로 로그인 되었습니다.");
-        return res.redirect(next);
-      }
-    });
+  .post(
+    passport.authenticate("local", {failureRedirect: '/login'}),  // passport-local Strategy
+    function(req, res, next) {
+      req.flash("success", "성공적으로 로그인 되었습니다.");
+      return res.redirect("/");
+    }
+  );
 
     // if (req.body.username === username && req.body.password === password) {
     //   req.session.user = user;
@@ -55,7 +49,6 @@ router.route("/login")
     //   req.flash("error", "계정 정보가 잘못되었습니다.");
     //   return res.redirect("/login");
     // }
-  })
 
 
 router.route("/logout")
