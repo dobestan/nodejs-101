@@ -10,6 +10,8 @@ var messages = require("express-messages");
 
 var mongoose = require("mongoose");
 
+var passport = require("passport");
+
 var homeRouter = require("./routes/home"); // router
 var aboutRouter = require("./routes/about"); // router
 var methodRouter = require("./routes/method"); // router
@@ -51,6 +53,22 @@ app.use(session({
 //                 // req.flash()                // getter
 // 1. flash message add, 2. flash message consume
 app.use(connectFlash());  // express-messages 와 같이 사용하기 위해서
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.serializeUser(function(user, callback) {
+  return callback(null, user._id);
+});
+
+var User = require("./models/user");
+passport.deserializeUser(function(id, callback) {
+  User.findOne({_id: id}, function(error, user) {
+    return callback(error, user);
+  });
+});
 
 
 // My Middlewares
