@@ -59,9 +59,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-var User = require("./models/user");
-passport.serializeUser(User.serialize());
-passport.deserializeUser(User.deserialize());
+require("./config/passport")(passport);
 
 
 // My Middlewares
