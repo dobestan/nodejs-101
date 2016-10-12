@@ -10,6 +10,15 @@
       socket.emit("enter", username);
     });
 
+    socket.on("enter", function(username) {
+      alert(username + "님이 채팅방에 참여했습니다.");
+    });
+
+
+
+
+
+
     socket.on("disconnect", function() {
       console.log("Socket is disconnected");
     });

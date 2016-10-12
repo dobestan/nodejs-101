@@ -128,6 +128,7 @@ io.on("connect", function(socket) {
 
   socket.on("enter", function(username) {
     console.log(username + "이 채팅방에 참여했습니다.");
+    io.emit("enter", username);
   });
 
   socket.on("disconnect", function() {
